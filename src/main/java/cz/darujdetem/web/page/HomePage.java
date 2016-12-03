@@ -26,9 +26,9 @@ public class HomePage extends WebPage
 		super();
 		List<Institute> insts = new LinkedList<>();
 		
-		insts.add(new Institute("Detsky domov Pysely"));
-		insts.add(new Institute("Domov Slany"));
-		insts.add(new Institute("Institut pro deti Rakovnik"));
+		insts.add(new Institute(1L, "Detsky domov Pysely"));
+		insts.add(new Institute(2L, "Domov Slany"));
+		insts.add(new Institute(3L, "Institut pro deti Rakovnik"));
 		
 		add(new PropertyListView<Institute>("institute", new ListModel<>(insts))
 		{

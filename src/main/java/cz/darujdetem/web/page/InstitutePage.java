@@ -26,11 +26,11 @@ public class InstitutePage extends WebPage
 		super();
 		List<Present> insts = new LinkedList<>();
 		
-		insts.add(new Present("Pavel Novak"));
-		insts.add(new Present("Jirka Kubes"));
-		insts.add(new Present("Norman Fidel"));
-		insts.add(new Present("Lidl Frankenstein"));
-		insts.add(new Present("Ota Soukar"));
+		insts.add(new Present(1L, "Pavel Novak"));
+		insts.add(new Present(2L, "Jirka Kubes"));
+		insts.add(new Present(3L, "Norman Fidel"));
+		insts.add(new Present(4L, "Lidl Frankenstein"));
+		insts.add(new Present(5L, "Ota Soukar"));
 		
 		add(new PropertyListView<Present>("present", new ListModel<>(insts))
 		{
