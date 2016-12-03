@@ -4,11 +4,13 @@ import org.apache.wicket.Page;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import cz.darujdetem.web.page.HomePage;
+import cz.darujdetem.web.page.InstitutePage;
 import cz.darujdetem.web.security.DarujDetemSession;
 
 /**
@@ -17,11 +19,25 @@ import cz.darujdetem.web.security.DarujDetemSession;
  */
 public class DarujDetemApplication extends AuthenticatedWebApplication implements ApplicationContextAware
 {
+	private ApplicationContext context;
+	
+	@Override
+	protected void init()
+	{
+		super.init();
+		
+		getComponentInstantiationListeners().add(new SpringComponentInjector(this, context));
+		
+		mountPage("home", HomePage.class);
+		mountPage("domov/${id}/${name}", InstitutePage.class);
+		
+		
+	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext context) throws BeansException
 	{
-		// TODO Auto-generated method stub
+		this.context = context;
 
 	}
 

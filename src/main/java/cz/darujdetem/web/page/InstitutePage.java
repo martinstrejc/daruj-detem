@@ -1,16 +1,16 @@
 package cz.darujdetem.web.page;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.util.ListModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import cz.darujdetem.web.db.entity.Institute;
 import cz.darujdetem.web.db.entity.Present;
+import cz.darujdetem.web.service.DataService;
 
 /**
  * @author Martin Strejc
@@ -20,19 +20,17 @@ public class InstitutePage extends WebPage
 {
 
 	private static final long serialVersionUID = 1L;
-	
-	public InstitutePage()
+
+	@SpringBean
+	private DataService dataService;
+
+	public InstitutePage(PageParameters params)
 	{
 		super();
-		List<Present> insts = new LinkedList<>();
+
+		Institute institute = dataService.getInstitute(params.get("id").toLong());
 		
-		insts.add(new Present(1L, "Pavel Novak"));
-		insts.add(new Present(2L, "Jirka Kubes"));
-		insts.add(new Present(3L, "Norman Fidel"));
-		insts.add(new Present(4L, "Lidl Frankenstein"));
-		insts.add(new Present(5L, "Ota Soukar"));
-		
-		add(new PropertyListView<Present>("present", new ListModel<>(insts))
+		add(new PropertyListView<Present>("present", new ListModel<>(dataService.getPresents(institute)))
 		{
 
 			private static final long serialVersionUID = 1L;
