@@ -29,7 +29,7 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this, context));
 		
 		mountPage("home", HomePage.class);
-		mountPage("domov/${id}/${name}", InstitutePage.class);
+		InstitutePage.mount(this);
 		
 		
 	}
