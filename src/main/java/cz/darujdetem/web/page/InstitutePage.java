@@ -10,36 +10,37 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.util.ListModel;
 
-import cz.darujdetem.web.db.entity.Institute;
+import cz.darujdetem.web.db.entity.Present;
 
 /**
  * @author Martin Strejc
  *
  */
-public class HomePage extends WebPage
+public class InstitutePage extends WebPage
 {
 
 	private static final long serialVersionUID = 1L;
 	
-	public HomePage()
+	public InstitutePage()
 	{
 		super();
-		List<Institute> insts = new LinkedList<>();
+		List<Present> insts = new LinkedList<>();
 		
-		insts.add(new Institute("Detsky domov Pysely"));
-		insts.add(new Institute("Domov Slany"));
-		insts.add(new Institute("Institut pro deti Rakovnik"));
+		insts.add(new Present("Pavel Novak"));
+		insts.add(new Present("Jirka Kubes"));
+		insts.add(new Present("Norman Fidel"));
+		insts.add(new Present("Lidl Frankenstein"));
+		insts.add(new Present("Ota Soukar"));
 		
-		add(new PropertyListView<Institute>("institute", new ListModel<>(insts))
+		add(new PropertyListView<Present>("present", new ListModel<>(insts))
 		{
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void populateItem(ListItem<Institute> item)
+			protected void populateItem(ListItem<Present> item)
 			{
-				item.queue(new BookmarkablePageLink<>("link", InstitutePage.class));
-				item.queue(new Label("name"));				
+				item.queue(new Label("name"));
 			}
 		});
 	}
