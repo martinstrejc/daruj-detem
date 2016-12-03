@@ -1,0 +1,491 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cz.daruj-detem</groupId>
+	<artifactId>daruj-detem</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<description>Donorship to children living without parents</description>
+
+	<name>daruj-detem</name>
+	<url>http://www.daruj-detem.cz</url>
+
+	<organization>
+		<name>Miroslav Kandr</name>
+		<url>http://www.kandr.cz</url>
+	</organization>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<targetJdk>1.8</targetJdk> <!-- workaround for http://jira.codehaus.org/browse/MPMD-67 -->
+		<slf4j.version>1.7.2</slf4j.version>
+		<junit.version>4.11</junit.version>
+		<mockito.version>1.9.5</mockito.version>
+		<servlet-api.version>2.5</servlet-api.version>
+		<!-- <jetty.version>7.4.2.v20110526</jetty.version> -->
+<!-- 		<spring.version>3.0.1.RELEASE</spring.version> -->
+		<spring.version>4.3.3.RELEASE</spring.version>
+		
+		
+		<!-- <spring.webflow.version>2.0.9.RELEASE</spring.webflow.version> -->
+<!-- 		<spring.security.version>2.0.4</spring.security.version> -->
+		<spring.security.version>3.0.8.RELEASE</spring.security.version>
+			
+		<wicket.version>8.0.0-M2</wicket.version>
+		<!-- <oscore.version>2.2.4</oscore.version> -->
+		<!-- <osworkflow.version>2.8.0</osworkflow.version> -->
+		<!-- <ospropertyset.version>1.3</ospropertyset.version> -->
+		<!-- <sitemesh.version>2.4.1</sitemesh.version> -->
+		<xstream.version>1.3</xstream.version>
+		<javax.mail.version>1.4.5</javax.mail.version>
+		<!-- <fop.version>0.95</fop.version> -->
+		<fop.version>2.0</fop.version>
+		<!-- FOP 2.0 requires changes -->
+<!-- 
+		<ibatis.version>2.3.4.726</ibatis.version>
+		<ibatis.spring.version>2.0.8</ibatis.spring.version>
+ -->
+		<mybatis.version>3.4.1</mybatis.version>
+		<mybatis.spring.version>1.3.0</mybatis.spring.version>
+		<cxf.version>2.7.0</cxf.version>
+		<ognl.version>3.0.5</ognl.version>
+		<apache.commons.fileupload.version>1.3.1</apache.commons.fileupload.version>
+		<apache.commons.io.version>1.3.2</apache.commons.io.version>
+		<!-- <urlrewrite.version>4.0.4</urlrewrite.version> -->
+		<maven.compiler.version>3.1</maven.compiler.version>
+		<maven.javadoc.version>2.8</maven.javadoc.version>
+		<maven.surefire.version>2.11</maven.surefire.version>
+	</properties>
+
+	<!-- <properties> -->
+	<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+	<!-- <servlet.api.version>2.5</servlet.api.version> -->
+	<!-- <org.springframework.version>3.2.6.RELEASE</org.springframework.version> -->
+	<!-- <spring.mock.version>2.0.8</spring.mock.version> -->
+	<!-- <mybatis.version>3.2.4</mybatis.version> -->
+	<!-- <mybatis.spring.version>1.2.2</mybatis.spring.version> -->
+	<!-- <cxf.version>2.7.11</cxf.version> -->
+	<!-- <jackson.jaxrs.version>1.9.13</jackson.jaxrs.version> -->
+	<!-- <spring.data.commons.core.version>1.4.1.RELEASE</spring.data.commons.core.version> -->
+	<!-- <velocity.version>1.7</velocity.version> -->
+	<!-- <guava.version>16.0.1</guava.version> -->
+	<!-- <joda.time.version>2.3</joda.time.version> -->
+	<!-- <aspectj.version>1.7.4</aspectj.version> -->
+	<!-- <commons.dbcp.version>1.4</commons.dbcp.version> -->
+	<!-- <spring.crypto.utils.version>1.3.6</spring.crypto.utils.version> -->
+	<!-- <postgresql.driver.version>9.3-1100-jdbc41</postgresql.driver.version> -->
+	<!-- <junit.version>4.8.1</junit.version> -->
+	<!-- <slf4j.version>1.7.5</slf4j.version> -->
+	<!-- <jasper.version>5.5.1</jasper.version> -->
+	<!-- <maven.compiler.version>3.1</maven.compiler.version> -->
+	<!-- <maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version> -->
+	<!-- <apidocOutput>${project.reporting.outputDirectory}</apidocOutput> -->
+	<!-- </properties> -->
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>com.drewnoakes</groupId> -->
+		<!-- <artifactId>metadata-extractor</artifactId> -->
+		<!-- <version>2.6.2</version> -->
+		<!-- </dependency> -->
+
+		<!-- JSP and Servlet -->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<scope>runtime</scope>
+			<version>1.2</version>
+		</dependency>
+		<!-- LOGGING - SLF4J and LOG4J -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-nop</artifactId> -->
+		<!-- <version>${slf4j.version}</version> -->
+		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<!-- <scope>runtime</scope> -->
+		</dependency>
+
+		<!-- since we want the jcl over slf4j, we need to bump up the version of 
+			slf4j-api that wicket brings in -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- JUnit -->
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Servlet API -->
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- SPRING Framework -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Spring Webflow -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.webflow</groupId> -->
+		<!-- <artifactId>spring-webflow</artifactId> -->
+		<!-- <version>${spring.webflow.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<!-- OpenSymphony Workflow -->
+		<!-- <dependency> -->
+		<!-- <groupId>opensymphony</groupId> -->
+		<!-- <artifactId>osworkflow</artifactId> -->
+		<!-- <version>${osworkflow.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>opensymphony</groupId> -->
+		<!-- <artifactId>oscore</artifactId> -->
+		<!-- <version>${oscore.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>opensymphony</groupId> -->
+		<!-- <artifactId>propertyset</artifactId> -->
+		<!-- <version>${ospropertyset.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>opensymphony</groupId> -->
+		<!-- <artifactId>sitemesh</artifactId> -->
+		<!-- <version>${sitemesh.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- FOP dependency -->
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>fop</artifactId>
+			<version>${fop.version}</version>
+		</dependency>
+
+		<!-- javax.MAIL dependency -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${javax.mail.version}</version>
+		</dependency>
+
+		<!-- XStream dependency -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${xstream.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${apache.commons.fileupload.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${apache.commons.io.version}</version>
+		</dependency>
+
+		<!-- Wicket -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-core</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-auth-roles</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-extensions</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-datetime</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-ioc</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-spring</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+
+		<!-- iBatis -->
+		<!-- 
+		<dependency>
+			<groupId>org.apache.ibatis</groupId>
+			<artifactId>ibatis-sqlmap</artifactId>
+			<version>${ibatis.version}</version>
+		</dependency>
+-->
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis.spring.version}</version>
+		</dependency>		
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-ibatis</artifactId> -->
+		<!-- <version>${spring.ibatis.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- UrlRewriter -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.tuckey</groupId> -->
+		<!-- <artifactId>urlrewritefilter</artifactId> -->
+		<!-- <version>${urlrewrite.version}</version> -->
+		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>com.drewnoakes</groupId>
+			<artifactId>metadata-extractor</artifactId>
+			<version>2.4.0-beta-1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ognl</groupId>
+			<artifactId>ognl</artifactId>
+			<version>${ognl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.186</version>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven.javadoc.version}</version>
+				<configuration>
+					<noqualifier>all</noqualifier>
+					<reportOutputDirectory>${apidocOutput}</reportOutputDirectory>
+					<destDir>apidoc</destDir>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>integration-test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
+
+</project>
