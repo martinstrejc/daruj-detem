@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+	<Resource name="jdbc/daruj"
+	              auth="Container"
+	              type="javax.sql.DataSource"
+	              username="daruj"
+	              password="Dar4uj"
+	              url="jdbc:postgresql://localhost:5432/daruj"
+	              driverClassName="org.postgresql.Driver"
+	              initialSize="20"
+	              maxWaitMillis="15000"
+	              maxTotal="75"
+	              maxIdle="20"
+	              testOnBorrow="true"
+	              validationQuery="select 1"
+	              />
+              
+</Context>
