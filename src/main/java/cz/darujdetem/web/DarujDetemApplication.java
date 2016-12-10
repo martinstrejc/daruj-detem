@@ -9,6 +9,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import cz.darujdetem.web.page.GiftPage;
 import cz.darujdetem.web.page.HomePage;
 import cz.darujdetem.web.page.InstitutePage;
 import cz.darujdetem.web.security.DarujDetemSession;
@@ -30,6 +31,7 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 		
 		mountPage("home", HomePage.class);
 		InstitutePage.mount(this);
+		GiftPage.mount(this);
 		
 		
 	}

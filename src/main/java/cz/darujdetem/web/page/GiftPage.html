@@ -10,13 +10,18 @@
 
 <div wicket:id="person">
 
-<h2 wicket:id="name">[Institute Name]</h2>
+<h2><span wicket:id="name">[person name]</span> / <span wicket:id="institute.name">[Institute Name]</span> </h2>
 
-<ul>
+<div>
 
-<li wicket:id="persons"><a wicket:id="link"><span wicket:id="name">[child name]</span> : <span wicket:id="gift.name">[gift name]</span></a></li>
+	<form wicket:id="donor">
+		<div>Email: <input type="email" wicket:id="email"/> </div>
+		<div>Jmeno: <input type="text" wicket:id="name"/> </div>
+		<div>Telefon: <input type="text" wicket:id="phone"/> </div>
+		<button wicket:id="submit">Chci darovat</button>
+	</form>
 
-</ul>
+</div>
 
 </div>
 

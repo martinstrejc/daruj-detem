@@ -3,12 +3,17 @@ package cz.darujdetem.web.page;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.EmailTextField;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import cz.darujdetem.web.db.entity.Donor;
 import cz.darujdetem.web.db.entity.Gift;
 import cz.darujdetem.web.db.entity.Person;
 import cz.darujdetem.web.service.data.DataService;
@@ -36,12 +41,15 @@ public class GiftPage extends WebPage
 		add(pers);
 		
 		pers.add(new Label("name"));
+		pers.add(new Label("institute.name"));
+		
+		pers.add(new DonorForm("donor"));
 		
 	}
 
 	public static void mount(WebApplication application)
 	{
-		application.mountPage("domov/${id}/${name}", GiftPage.class);
+		application.mountPage("darek/${id}/${name}", GiftPage.class);
 	}
 	
 	public long getGiftId() {
@@ -57,6 +65,21 @@ public class GiftPage extends WebPage
 	
 	public static BookmarkablePageLink<GiftPage> bookmarkablePageLink(String id, Gift gift) {
 		return new BookmarkablePageLink<>(id, GiftPage.class, GiftPage.linkParameters(gift));
+	}
+	
+	private class DonorForm extends Form<Donor> {
+
+		private static final long serialVersionUID = 1L;
+
+		public DonorForm(String id)
+		{
+			super(id, new CompoundPropertyModel<>(new Donor()));
+			add(new EmailTextField("email").setRequired(true));
+			add(new TextField<String>("name").setRequired(false));
+			add(new TextField<String>("phone").setRequired(false));
+			add(new Button("submit"));
+		}
+		
 	}
 	
 }

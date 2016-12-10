@@ -11,6 +11,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import cz.darujdetem.web.db.entity.Gift;
 import cz.darujdetem.web.db.entity.Institute;
 import cz.darujdetem.web.db.entity.Person;
 import cz.darujdetem.web.service.data.DataService;
@@ -77,7 +78,13 @@ public class InstitutePage extends WebPage
 		@Override
 		protected void populateItem(ListItem<Person> item)
 		{
-			item.queue(GiftPage.bookmarkablePageLink("link", item.getModelObject().getGift()));
+			Gift g = item.getModelObject().getGift();
+			if (g == null) {
+				item.queue(new WebMarkupContainer("link"));
+			} else {
+				item.queue(GiftPage.bookmarkablePageLink("link", g));
+			}
+			
 			item.queue(new Label("name"));
 			item.queue(new Label("gift.name"));
 		}
