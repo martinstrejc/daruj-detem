@@ -7,7 +7,6 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -40,17 +39,8 @@ public class InstitutePage extends WebPage
 		
 		inst.add(new Label("name"));
 
-		inst.add(new PropertyListView<Person>("persons")
-		{
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected void populateItem(ListItem<Person> item)
-			{
-				item.queue(new Label("name"));
-			}
-		});
+		inst.add(new PersonListView("persons"));
+		
 	}
 
 	public static void mount(WebApplication application)
@@ -71,6 +61,26 @@ public class InstitutePage extends WebPage
 	
 	public static BookmarkablePageLink<InstitutePage> bookmarkablePageLink(String id, Institute institute) {
 		return new BookmarkablePageLink<>(id, InstitutePage.class, InstitutePage.linkParameters(institute));
+	}
+	
+	
+	@SuppressWarnings("squid:MaximumInheritanceDepth")
+	private class PersonListView extends PropertyListView<Person> {
+
+		private static final long serialVersionUID = 1L;
+
+		public PersonListView(String id)
+		{
+			super(id);
+		}
+		
+		@Override
+		protected void populateItem(ListItem<Person> item)
+		{
+			item.queue(new Label("name"));
+			item.queue(new Label("gift.name"));
+		}
+		
 	}
 
 }
