@@ -12,8 +12,7 @@ import org.springframework.context.annotation.Import;
  *
  */
 @Configuration
-@Import({ApplicationContextConfig.class})
-// @Import({ApplicationContextConfig.class, DataAccessConfig.class})
+@Import({ApplicationContextConfig.class, DataAccessConfig.class})
 @EnableAspectJAutoProxy
 public class DarujDetemConfig {
 
