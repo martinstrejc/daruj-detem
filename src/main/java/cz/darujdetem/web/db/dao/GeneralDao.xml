@@ -5,12 +5,18 @@
 
 	<resultMap type="Institute" id="mapInstitutePersonGift" autoMapping="true">
 		<id column="id" property="id" />
-		<collection property="persons" resultMap="mapPersonGift" column="p_id" />
+		<collection property="persons" column="p_id" resultMap="mapPersonGiftJoin" />
 	</resultMap>
 	
-	<resultMap type="Person" id="mapPersonGift" autoMapping="false">
+	<resultMap type="Person" id="mapPersonGiftJoin" autoMapping="false">
 		<id property="id" column="p_id" />
 		<result property="name" column="p_name" />
+		<association property="gift" column="g_id" resultMap="mapGiftJoin" />
+	</resultMap>
+
+	<resultMap type="Gift" id="mapGiftJoin" autoMapping="false">
+		<id property="id" column="g_id" />
+		<result property="name" column="g_name" />
 	</resultMap>
 
 	<select id="selectInstituteGifts" parameterType="long" resultMap="mapInstitutePersonGift">
@@ -18,10 +24,14 @@
 				i.*,
 				p.id as p_id,
 				p.name as p_name,
-				p.institute_id as p_institute_id
+				p.institute_id as p_institute_id,
+				g.id as g_id,
+				g.name as g_name,
+				g.person_id as g_person_id
 			FROM 
 				institute i
-				LEFT JOIN person p ON (p.institute_id = i.id) 
+				LEFT JOIN person p ON (p.institute_id = i.id)
+				LEFT JOIN gift g ON (g.person_id = p.id) 
 			WHERE 
 				i.id = #{instituteId}
 			ORDER BY 
