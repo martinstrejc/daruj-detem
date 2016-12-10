@@ -20,13 +20,14 @@ public class HomePage extends WebPage
 	private static final long serialVersionUID = 1L;
 	
 	@SpringBean
+	@SuppressWarnings("squid:S1948")
 	private DataService dataService;
 	
 	public HomePage()
 	{
 		super();
 		
-		add(new PropertyListView<Institute>("institute", new ListModel<>(dataService.getInstitutes()))
+		add(new PropertyListView<Institute>("institute", new ListModel<>(dataService.getInstitutes())) // NOSONAR
 		{
 
 			private static final long serialVersionUID = 1L;

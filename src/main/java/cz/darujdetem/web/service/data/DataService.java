@@ -6,7 +6,6 @@ package cz.darujdetem.web.service.data;
 import java.util.List;
 
 import cz.darujdetem.web.db.entity.Institute;
-import cz.darujdetem.web.db.entity.Gift;
 
 /**
  * @author Martin Strejc
@@ -17,8 +16,6 @@ public interface DataService
 	
 	List<Institute> getInstitutes();
 
-	Institute getInstitute(long id);
+	Institute getInstituteAndGifts(long instituteId);
 	
-	List<Gift> getPresents(Institute institute);
-
 }

@@ -6,34 +6,37 @@ package cz.darujdetem.web.service.data.impl;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import cz.darujdetem.web.db.entity.Institute;
 import cz.darujdetem.web.service.data.DataService;
+import cz.darujdetem.web.db.dao.GeneralDao;
 import cz.darujdetem.web.db.entity.Gift;
 
 /**
  * @author Martin Strejc
  *
  */
+@Service
 public class DataServiceImpl implements DataService
 {
+	
+	@Autowired
+	private GeneralDao generalDao;
 
 	@Override
 	public List<Institute> getInstitutes()
 	{
-		List<Institute> institutes = new LinkedList<>();
-		institutes.add(new Institute(1L, "Detsky domov Pysely"));
-		institutes.add(new Institute(2L, "Domov Slany"));
-		institutes.add(new Institute(3L, "Institut pro deti Rakovnik"));
-		return institutes;
+		return generalDao.selectInstitutes();
+	}
+	
+	@Override
+	public Institute getInstituteAndGifts(long instituteId) {
+		return generalDao.selectInstituteGifts(instituteId);
 	}
 
-	@Override
-	public Institute getInstitute(long id)
-	{
-		return id == 1L ? new Institute(1L, "Detsky domov Pysely") : null;
-	}
-
-	@Override
+	@Deprecated
 	public List<Gift> getPresents(Institute institute)
 	{
 		if (institute.getId() != 1L) {

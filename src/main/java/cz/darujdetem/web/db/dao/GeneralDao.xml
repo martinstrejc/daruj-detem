@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Sun Apr 10 21:31:27 CEST 2016-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cz.darujdetem.web.db.dao.GeneralDao">
+
+	<resultMap type="Institute" id="mapInstitutePersonGift" autoMapping="true">
+		<collection property="persons" resultMap="mapPersonGift" column="p_id" />
+	</resultMap>
+	
+	<resultMap type="Person" id="mapPersonGift" autoMapping="true">
+		<id property="id" column="p_id" />
+		<result property="name" column="p_name" />
+	</resultMap>
+
+	<select id="selectInstituteGifts" parameterType="long" resultMap="mapInstitutePersonGift">
+		SELECT 
+				i.*,
+				p.id as p_id,
+				p.name as p_name,
+				p.institute_id as p_institute_id
+			FROM 
+				institute i
+				LEFT JOIN person p ON (p.institute_id = i.id)
+			WHERE 
+				i.id = #{instituteId}
+	</select>
+	
+</mapper>
