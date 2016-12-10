@@ -11,7 +11,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import cz.darujdetem.web.db.entity.Institute;
-import cz.darujdetem.web.db.entity.Present;
+import cz.darujdetem.web.db.entity.Gift;
 import cz.darujdetem.web.service.DataService;
 
 /**
@@ -32,14 +32,14 @@ public class InstitutePage extends WebPage
 
 		Institute institute = dataService.getInstitute(params.get("id").toLong());
 
-		add(new PropertyListView<Present>("present",
+		add(new PropertyListView<Gift>("present",
 			new ListModel<>(dataService.getPresents(institute)))
 		{
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void populateItem(ListItem<Present> item)
+			protected void populateItem(ListItem<Gift> item)
 			{
 				item.queue(new Label("name"));
 			}

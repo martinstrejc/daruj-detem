@@ -1,9 +1,12 @@
 package cz.darujdetem.web.db.entity;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * @author Martin Strejc
  *
  */
+@Alias("Institute")
 public class Institute extends NameId
 {
 

@@ -1,20 +1,23 @@
 package cz.darujdetem.web.db.entity;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * @author Martin Strejc
  *
  */
-public class Present extends NameId
+@Alias("Gift")
+public class Gift extends NameId
 {
 
 	private static final long serialVersionUID = 1L;
 
-	public Present()
+	public Gift()
 	{
 		super();
 	}
 
-	public Present(Long id, String name)
+	public Gift(Long id, String name)
 	{
 		super(id, name);
 	}
