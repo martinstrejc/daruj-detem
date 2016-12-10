@@ -4,7 +4,8 @@ package cz.darujdetem.web.db.entity;
  * @author Martin Strejc
  *
  */
-public class NameId extends Id
+@SuppressWarnings("squid:S2160")
+public class EntityNameId extends EntityId
 {
 
 	private static final long serialVersionUID = 1L;
@@ -12,12 +13,12 @@ public class NameId extends Id
 	private String name;
 
 	
-	public NameId()
+	public EntityNameId()
 	{
 		super();
 	}
 
-	public NameId(Long id, String name)
+	public EntityNameId(Long id, String name)
 	{
 		super(id);
 		this.name = name;

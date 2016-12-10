@@ -7,10 +7,13 @@ import org.apache.ibatis.type.Alias;
  *
  */
 @Alias("Person")
-public class Person extends NameId
+@SuppressWarnings("squid:S2160")
+public class Person extends EntityNameId
 {
 
 	private static final long serialVersionUID = 1L;
+	
+	private Gift gift;
 
 	public Person()
 	{
@@ -22,5 +25,14 @@ public class Person extends NameId
 		super(id, name);
 	}
 
+	public Gift getGift()
+	{
+		return gift;
+	}
 
+	public void setGift(Gift gift)
+	{
+		this.gift = gift;
+	}
+	
 }

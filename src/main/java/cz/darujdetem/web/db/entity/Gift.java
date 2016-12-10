@@ -7,7 +7,7 @@ import org.apache.ibatis.type.Alias;
  *
  */
 @Alias("Gift")
-public class Gift extends NameId
+public class Gift extends EntityNameId
 {
 
 	private static final long serialVersionUID = 1L;

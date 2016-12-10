@@ -6,18 +6,18 @@ import java.io.Serializable;
  * @author Martin Strejc
  *
  */
-public class Id implements Serializable
+public class EntityId implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 
-	public Id() {
+	public EntityId() {
 		this(null);
 	}
 
-	public Id(Long id)
+	public EntityId(Long id)
 	{
 		super();
 		this.id = id;
@@ -51,7 +51,7 @@ public class Id implements Serializable
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Id other = (Id)obj;
+		EntityId other = (EntityId)obj;
 		if (id == null)
 		{
 			if (other.id != null)
