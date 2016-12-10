@@ -8,7 +8,7 @@ import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import cz.darujdetem.web.db.entity.Institute;
-import cz.darujdetem.web.service.DataService;
+import cz.darujdetem.web.service.data.DataService;
 
 /**
  * @author Martin Strejc

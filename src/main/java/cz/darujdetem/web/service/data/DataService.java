@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cz.darujdetem.web.service;
+package cz.darujdetem.web.service.data;
 
 import java.util.List;
 

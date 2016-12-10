@@ -1,14 +1,14 @@
 /**
  * 
  */
-package cz.darujdetem.web.service.impl;
+package cz.darujdetem.web.service.data.impl;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import cz.darujdetem.web.db.entity.Institute;
+import cz.darujdetem.web.service.data.DataService;
 import cz.darujdetem.web.db.entity.Gift;
-import cz.darujdetem.web.service.DataService;
 
 /**
  * @author Martin Strejc
