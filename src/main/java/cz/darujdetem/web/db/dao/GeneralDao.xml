@@ -4,10 +4,11 @@
 <mapper namespace="cz.darujdetem.web.db.dao.GeneralDao">
 
 	<resultMap type="Institute" id="mapInstitutePersonGift" autoMapping="true">
+		<id column="id" property="id" />
 		<collection property="persons" resultMap="mapPersonGift" column="p_id" />
 	</resultMap>
 	
-	<resultMap type="Person" id="mapPersonGift" autoMapping="true">
+	<resultMap type="Person" id="mapPersonGift" autoMapping="false">
 		<id property="id" column="p_id" />
 		<result property="name" column="p_name" />
 	</resultMap>
@@ -20,9 +21,11 @@
 				p.institute_id as p_institute_id
 			FROM 
 				institute i
-				LEFT JOIN person p ON (p.institute_id = i.id)
+				LEFT JOIN person p ON (p.institute_id = i.id) 
 			WHERE 
 				i.id = #{instituteId}
+			ORDER BY 
+				p.name ASC
 	</select>
 	
 </mapper>

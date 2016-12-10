@@ -1,5 +1,7 @@
 package cz.darujdetem.web.db.entity;
 
+import com.google.common.base.MoreObjects.ToStringHelper;
+
 /**
  * @author Martin Strejc
  *
@@ -32,6 +34,13 @@ public class EntityNameId extends EntityId
 	public void setName(String name)
 	{
 		this.name = name;
+	}
+	
+	@Override
+	protected ToStringHelper toStringHelper()
+	{
+		return super.toStringHelper()
+			.add("name", name);
 	}
 
 }
