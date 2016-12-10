@@ -14,6 +14,8 @@ public class Person extends EntityNameId
 	private static final long serialVersionUID = 1L;
 	
 	private Gift gift;
+	
+	private Institute institute;
 
 	public Person()
 	{
@@ -34,5 +36,15 @@ public class Person extends EntityNameId
 	{
 		this.gift = gift;
 	}
-	
+
+	public Institute getInstitute()
+	{
+		return institute;
+	}
+
+	public void setInstitute(Institute institute)
+	{
+		this.institute = institute;
+	}
+
 }

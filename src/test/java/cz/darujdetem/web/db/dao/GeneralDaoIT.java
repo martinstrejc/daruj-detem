@@ -46,5 +46,12 @@ public class GeneralDaoIT extends AbstractJUnit4SpringContextTests
 		log.debug("person 1: {}", inst.getPersons().get(0));
 		assertEquals((Object)2L, p.get(0).getId());
 	}
+	
+	@Test
+	public void selectPersonByGift() {
+		Person person = generalDao.selectPersonByGift(1L);
+		log.debug("person: {}", person);
+		assertEquals((Object)1L, person.getId());
+	}
 
 }

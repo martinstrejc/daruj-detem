@@ -77,6 +77,7 @@ public class InstitutePage extends WebPage
 		@Override
 		protected void populateItem(ListItem<Person> item)
 		{
+			item.queue(GiftPage.bookmarkablePageLink("link", item.getModelObject().getGift()));
 			item.queue(new Label("name"));
 			item.queue(new Label("gift.name"));
 		}

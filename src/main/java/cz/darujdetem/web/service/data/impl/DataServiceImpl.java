@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import cz.darujdetem.web.db.dao.GeneralDao;
 import cz.darujdetem.web.db.entity.Institute;
+import cz.darujdetem.web.db.entity.Person;
 import cz.darujdetem.web.service.data.DataService;
 
 /**
@@ -32,6 +33,12 @@ public class DataServiceImpl implements DataService
 	@Override
 	public Institute getInstituteAndGifts(long instituteId) {
 		return generalDao.selectInstituteGifts(instituteId);
+	}
+
+	@Override
+	public Person getPersonByGift(long giftId)
+	{
+		return generalDao.selectPersonByGift(giftId);
 	}
 
 }

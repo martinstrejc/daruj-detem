@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
 
 import cz.darujdetem.web.db.entity.Institute;
+import cz.darujdetem.web.db.entity.Person;
 
 /**
  * @author Martin Strejc
@@ -22,5 +23,7 @@ public interface GeneralDao
 	List<Institute> selectInstitutes();
 
 	Institute selectInstituteGifts(long instituteId);
+
+	Person selectPersonByGift(long giftId);
 	
 }
