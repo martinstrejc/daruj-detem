@@ -1,5 +1,7 @@
 package cz.darujdetem.web.db.entity;
 
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
 
 import com.google.common.base.MoreObjects.ToStringHelper;
@@ -18,6 +20,12 @@ public class Donor extends EntityNameId
 	private String email;
 	
 	private String phone;
+	
+	private Boolean termsConfirmed;
+	
+	private Date termsConfirmedDate;
+	
+	private Person person;
 	
 	public Donor()
 	{
@@ -48,13 +56,45 @@ public class Donor extends EntityNameId
 	{
 		this.phone = phone;
 	}
-	
+
+	public Boolean getTermsConfirmed()
+	{
+		return termsConfirmed;
+	}
+
+	public void setTermsConfirmed(Boolean termsConfirmed)
+	{
+		this.termsConfirmed = termsConfirmed;
+	}
+
+	public Date getTermsConfirmedDate()
+	{
+		return termsConfirmedDate;
+	}
+
+	public void setTermsConfirmedDate(Date termsConfirmedDate)
+	{
+		this.termsConfirmedDate = termsConfirmedDate;
+	}
+
+	public Person getPerson()
+	{
+		return person;
+	}
+
+	public void setPerson(Person person)
+	{
+		this.person = person;
+	}
+
 	@Override
 	protected ToStringHelper toStringHelper()
 	{
 		return super.toStringHelper()
 			.add("email", email)
-			.add("phone", phone);
+			.add("phone", phone)
+			.add("termsConfirmed", termsConfirmed)
+			.add("termsConfirmedDate", termsConfirmedDate);
 	}
 	
 }

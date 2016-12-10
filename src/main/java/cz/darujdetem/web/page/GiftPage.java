@@ -1,5 +1,7 @@
 package cz.darujdetem.web.page;
 
+import java.util.Date;
+
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -43,7 +45,10 @@ public class GiftPage extends WebPage
 		pers.add(new Label("name"));
 		pers.add(new Label("institute.name"));
 		
-		pers.add(new DonorForm("donor"));
+		Donor donor = new Donor();
+		donor.setPerson(person);
+		
+		pers.add(new DonorForm("donor", donor));
 		
 	}
 
@@ -71,13 +76,22 @@ public class GiftPage extends WebPage
 
 		private static final long serialVersionUID = 1L;
 
-		public DonorForm(String id)
+		public DonorForm(String id, Donor donor)
 		{
-			super(id, new CompoundPropertyModel<>(new Donor()));
+			super(id, new CompoundPropertyModel<>(donor));
 			add(new EmailTextField("email").setRequired(true));
 			add(new TextField<String>("name").setRequired(false));
 			add(new TextField<String>("phone").setRequired(false));
+			add(new TextField<String>("termsConfirmed").setRequired(true));
 			add(new Button("submit"));
+		}
+		
+		@Override
+		protected void onSubmit()
+		{
+			Donor donor = getModelObject();
+			donor.setTermsConfirmedDate(new Date());
+			setResponsePage(new ThankYouPage(donor));
 		}
 		
 	}
