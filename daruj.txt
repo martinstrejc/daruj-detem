@@ -1,5 +1,50 @@
 
 
+Odeslání mailu:
+
+Děkujeme Vám za Váš zájem o děti z dětských domovů!
+
+Na Vámi zadaný email ... byl odeslán odkaz potřebný k dokončení rezervace dárku.
+
+
+-------
+
+Dobrý den,
+
+Děkujeme Vám za Váš zájem o děti z dětských domovů!
+
+Pro potvrzení Vašeho zájmu o dárek XXX pro YYYY z ZZZ klikněte na následující odkaz,
+případně jej zkopírujte a otevřete ve webovém prohlížeči.
+
+link....
+
+
+S pozdravem Jiří Vojáček
+
+
+-------
+
+Dobrý den,
+
+Děkujeme Vám za Váš zájem o děti z dětských domovů!
+
+Vámi vybraný dárek je pro Vás právě zablokován štítkem XXXX.
+
+Dárek po zakoupení odešlete na adresu:
+Dárek č. 1003
+Dětský domov XXX
+Litoměřice
+111 11
+
+Dárek prosím odešlete nejpozději 26.12.2016.
+
+
+Přeji Vám klidné a radostné Vánoční svátky!
+
+S pozdravem Jiří Vojáček
+
+
+
 Issues:
 	An institute does not exist
 	An ID is invalid
