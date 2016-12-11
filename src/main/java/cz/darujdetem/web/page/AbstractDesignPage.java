@@ -11,6 +11,8 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 public abstract class AbstractDesignPage extends WebPage
 {
 
+	public static final String IMG_ROOT = "img/";
+
 	private static final long serialVersionUID = 1L;
 	
 

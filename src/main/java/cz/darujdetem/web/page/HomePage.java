@@ -9,7 +9,6 @@ import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import cz.darujdetem.web.DesignConts;
 import cz.darujdetem.web.db.entity.Institute;
 import cz.darujdetem.web.service.data.DataService;
 
@@ -42,7 +41,7 @@ public class HomePage extends AbstractDesignPage
 				Institute i = item.getModelObject();
 				item.queue(InstitutePage.bookmarkablePageLink("link", i));
 				item.queue(new Label("name"));
-				item.queue(new WebMarkupContainer("img").add(new AttributeModifier("src", DesignConts.IMG_ROOT + "o" + i.getDesignNum() + ".png")));
+				item.queue(new WebMarkupContainer("img").add(new AttributeModifier("src", IMG_ROOT + "o" + i.getDesignNum() + ".png")));
 			}
 			
 		});
