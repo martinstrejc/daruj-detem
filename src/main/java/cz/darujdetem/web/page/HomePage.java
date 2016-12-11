@@ -1,12 +1,15 @@
 package cz.darujdetem.web.page;
 
-import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.util.ListModel;
+import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import cz.darujdetem.web.DesignConts;
 import cz.darujdetem.web.db.entity.Institute;
 import cz.darujdetem.web.service.data.DataService;
 
@@ -14,7 +17,8 @@ import cz.darujdetem.web.service.data.DataService;
  * @author Martin Strejc
  *
  */
-public class HomePage extends WebPage
+@SuppressWarnings("squid:MaximumInheritanceDepth")
+public class HomePage extends AbstractDesignPage
 {
 
 	private static final long serialVersionUID = 1L;
@@ -35,11 +39,19 @@ public class HomePage extends WebPage
 			@Override
 			protected void populateItem(ListItem<Institute> item)
 			{
-				item.queue(InstitutePage.bookmarkablePageLink("link", item.getModelObject()));
-				item.queue(new Label("name"));				
+				Institute i = item.getModelObject();
+				item.queue(InstitutePage.bookmarkablePageLink("link", i));
+				item.queue(new Label("name"));
+				item.queue(new WebMarkupContainer("img").add(new AttributeModifier("src", DesignConts.IMG_ROOT + "o" + i.getDesignNum() + ".png")));
 			}
 			
 		});
 	}
+	
+	public static void mount(WebApplication application)
+	{
+		application.mountPage("/home", HomePage.class);
+	}
+
 
 }

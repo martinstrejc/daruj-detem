@@ -11,6 +11,14 @@
 	<resultMap type="Institute" id="mapInstituteJoin" autoMapping="false">
 		<id property="id" column="i_id" />
 		<result property="name" column="i_name" />
+		<result property="address" column="i_address" />
+		<result property="city" column="i_city" />
+		<result property="zip" column="i_zip" />
+		<result property="contactPerson" column="i_contact_person" />
+		<result property="phone" column="i_phone" />
+		<result property="email" column="i_email" />
+		<result property="web" column="i_web" />
+		<result property="designNum" column="i_design_num" />
 	</resultMap>
 	
 	<resultMap type="Person" id="mapPersonGiftJoin" autoMapping="false">
@@ -33,7 +41,16 @@
 
 	<sql id="instituteColsJoin">
 				i.id as i_id,
-				i.name as i_name
+				i.name as i_name,
+				i.name as i_name,
+				i.address as i_address,
+				i.city as i_city,
+				i.zip as i_zip,
+				i.contact_person as i_contact_person,
+				i.phone as i_phone,
+				i.email as i_email,
+				i.web as i_web,
+				i.design_num as i_design_num
 	</sql>
 
 	<sql id="personColsJoin">

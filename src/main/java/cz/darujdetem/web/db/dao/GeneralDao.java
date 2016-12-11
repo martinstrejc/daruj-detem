@@ -18,7 +18,7 @@ import cz.darujdetem.web.db.entity.Person;
 public interface GeneralDao
 {
 
-	@Select("SELECT * FROM institute ORDER BY name ASC")
+	@Select("SELECT * FROM institute WHERE id > 999 ORDER BY name ASC")
 	@ResultType(Institute.class)
 	List<Institute> selectInstitutes();
 

@@ -5,20 +5,42 @@
 <title>Daruj detem</title>
 </head>
 <body>
+<div>
 
 <h1>Daruj detem</h1>
 
-<div>
+<wicket:extend>
 
-<h2>Domovy</h2>
 
-<ul>
+    <!-- ===========================
+    OVERVIEW SECTION
+    =========================== --> 
+    <div id="overview" class="container">       
+        <!--SECTIONHEAD START-->
+        <div class="sectionhead">            
+            <h2>Dětské <span class="highlight">domovy</span> z různých míst ČR</h2>
+            <p>Pokud chcete udělat radost dětem z dětských domovů, vyberte si domov, ve kterém byste rádi někoho obdarovali.</p>
+            <hr>
+        </div><!--SECTIONHEAD END-->
+        
+        <!--OVERVIEW ITEMS-->
+        <div class="row">
+        
+            <div class="col-md-6 col-lg-4" wicket:id="institute">
+            	<a wicket:id="link">
+	                <img src="img/o1.png" alt="" wicket:id="img">
+	                <h4 wicket:id="name">Dětský domov Pyšely</h4>
+	                <p>Nějaký text o dětském domově</p>
+				</a>
+            </div><!--ITEM END-->
 
-<li wicket:id="institute"><a wicket:id="link"><span wicket:id="name">[institute name]</span></a></li>
+        </div><!--OVERVIEW ITEMS END-->
+    </div><!--OVERVIEW SECTION END-->
 
-</ul>
+
+
+</wicket:extend>
 
 </div>
-
 </body>
 </html>
