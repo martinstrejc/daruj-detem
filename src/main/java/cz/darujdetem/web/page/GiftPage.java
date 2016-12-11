@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -82,7 +83,7 @@ public class GiftPage extends WebPage
 			add(new EmailTextField("email").setRequired(true));
 			add(new TextField<String>("name").setRequired(false));
 			add(new TextField<String>("phone").setRequired(false));
-			add(new TextField<String>("termsConfirmed").setRequired(true));
+			add(new CheckBox("termsConfirmed").setRequired(true));
 			add(new Button("submit"));
 		}
 		
