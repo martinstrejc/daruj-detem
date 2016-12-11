@@ -6,19 +6,53 @@
 </head>
 <body>
 
-<h1>Daruj detem</h1>
+<wicket:extend>
 
-<div wicket:id="institute">
 
-<h2 wicket:id="name">[Institute Name]</h2>
+    <!-- ===========================
+    PRODUCTS SECTION
+    =========================== -->
+    <div id="products" class="container" wicket:id="institute">
 
-<ul>
+        <!--SECTIONHEAD START-->
+        <div class="sectionhead text-center">
+            <h2 wicket:id="name">Dětský domov a Školní jídelna Litoměřice</h2>
+            <p>Nějaký další text o dětském domově</p>
+            <hr>
+        </div><!--SECTIONHEAD END-->
 
-	<li wicket:id="persons"><a wicket:id="link"><span wicket:id="name">[child name]</span> : <span wicket:id="gift.name">[gift name]</span></a></li>
+        <!--SMALL ITEM 2ND ROW START-->
+        <div class="row moreitems" wicket:id="persons">
+   
+            <!--SMALL ITEM 4 START-->
+            <div class="col-md-6">
+                <!--SMALL PRODUCT IMAGE START-->
+                <div class="col-md-4 text-center">
+                    <a wicket:id="link">
+                        <img class="productimg" src="img/product-5.jpg" alt="">
+                    </a>
 
-</ul>
+                    <!--DISCOUNT TAG-->
+                    <div class="smalltag offertag fixedoffer">
+                        <h4>5</h4>
+                        <p>let</p>
+                    </div><!--DISCOUNT TAG-->
+                </div><!--PRODUCT IMAGE END-->
 
-</div>
+                <!--SMALL PRODUCT DESCRIPTION START-->
+                <div class="col-md-8">
+                    <h4 wicket:id="gift.name"><a href="">Mobilní telefon (Petra)</a></h4>
+                    <p>dívka</p>
+                    <p>5 let</p>
+<!--                     <p class="price">US <span class="highlight">$4.25</span> / piece</p> -->
+<!--                     <p>Original Price: US $8.49 , You Save:US $4.24</p> -->
+                </div><!--SMALL PRODUCT DESCRIPTION END-->
+            </div><!--SMALL ITEM 4 END-->
+        </div><!--SMALL ITEM 2ND ROW END-->
+    </div><!--PRODUCTS SECTION END-->
+
+
+</wicket:extend>
 
 </body>
 </html>

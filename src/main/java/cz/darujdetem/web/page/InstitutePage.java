@@ -1,7 +1,6 @@
 package cz.darujdetem.web.page;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -20,7 +19,7 @@ import cz.darujdetem.web.service.data.DataService;
  * @author Martin Strejc
  *
  */
-public class InstitutePage extends WebPage
+public class InstitutePage extends AbstractDesignPage
 {
 
 	private static final long serialVersionUID = 1L;
