@@ -96,6 +96,8 @@ public class InstitutePage extends AbstractDesignPage
 			item.queue(new Label("age"));
 			item.queue(new WebMarkupContainer("male").add(new AttributeAppender("class", offerIcon(p.getMale())).setSeparator(" ")));
 			
+			
+			// FIXME building the path
 			String relativePath  = "/img/" + (StringUtils.isEmpty(g.getImg()) ? "" : g.getImg() );
 			
 			
