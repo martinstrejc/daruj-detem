@@ -1,5 +1,6 @@
 package cz.darujdetem.web.page;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -7,9 +8,12 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.protocol.http.RequestUtils;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.springframework.util.StringUtils;
 
 import cz.darujdetem.web.db.entity.Gift;
 import cz.darujdetem.web.db.entity.Institute;
@@ -91,6 +95,11 @@ public class InstitutePage extends AbstractDesignPage
 			item.queue(new Label("gift.name"));
 			item.queue(new Label("age"));
 			item.queue(new WebMarkupContainer("male").add(new AttributeAppender("class", offerIcon(p.getMale())).setSeparator(" ")));
+			
+			String relativePath  = "/img/" + (StringUtils.isEmpty(g.getImg()) ? "" : g.getImg() );
+			
+			
+			item.queue(new WebMarkupContainer("img").add(new AttributeModifier("src", RequestCycle.get().getRequest().getContextPath() + relativePath)));
 			
 			
 		}

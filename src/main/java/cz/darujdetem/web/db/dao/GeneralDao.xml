@@ -33,6 +33,7 @@
 		<id property="id" column="g_id" />
 		<result property="name" column="g_name" />
 		<result property="note" column="g_note" />
+		<result property="img" column="g_img" />
 	</resultMap>
 
 	<resultMap type="Person" id="mapPersonGiftReverse" autoMapping="false" extends="mapPersonGiftJoin">
@@ -68,6 +69,7 @@
 				g.id as g_id,
 				g.name as g_name,
 				g.note as g_note,
+				g.img as g_img,
 				g.person_id as g_person_id
 	</sql>
 

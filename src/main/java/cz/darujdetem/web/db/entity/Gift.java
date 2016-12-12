@@ -13,6 +13,8 @@ public class Gift extends EntityNameId
 	private static final long serialVersionUID = 1L;
 	
 	private String note;
+	
+	private String img;
 
 	public Gift()
 	{
@@ -33,6 +35,15 @@ public class Gift extends EntityNameId
 	{
 		this.note = note;
 	}
-	
 
+	public String getImg()
+	{
+		return img;
+	}
+
+	public void setImg(String img)
+	{
+		this.img = img;
+	}
+	
 }
