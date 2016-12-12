@@ -11,6 +11,8 @@ public class Gift extends EntityNameId
 {
 
 	private static final long serialVersionUID = 1L;
+	
+	private String note;
 
 	public Gift()
 	{
@@ -22,5 +24,15 @@ public class Gift extends EntityNameId
 		super(id, name);
 	}
 
+	public String getNote()
+	{
+		return note;
+	}
+
+	public void setNote(String note)
+	{
+		this.note = note;
+	}
+	
 
 }

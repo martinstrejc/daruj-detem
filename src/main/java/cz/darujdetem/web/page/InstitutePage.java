@@ -1,5 +1,6 @@
 package cz.darujdetem.web.page;
 
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -77,7 +78,8 @@ public class InstitutePage extends AbstractDesignPage
 		@Override
 		protected void populateItem(ListItem<Person> item)
 		{
-			Gift g = item.getModelObject().getGift();
+			Person p = item.getModelObject();
+			Gift g = p.getGift();
 			if (g == null) {
 				item.queue(new WebMarkupContainer("link"));
 			} else {
@@ -85,7 +87,12 @@ public class InstitutePage extends AbstractDesignPage
 			}
 			
 			item.queue(new Label("name"));
+			item.queue(new Label("gift.note"));
 			item.queue(new Label("gift.name"));
+			item.queue(new Label("age"));
+			item.queue(new WebMarkupContainer("male").add(new AttributeAppender("class", offerIcon(p.getMale())).setSeparator(" ")));
+			
+			
 		}
 		
 	}

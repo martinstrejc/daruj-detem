@@ -32,6 +32,10 @@ public abstract class AbstractDesignPage extends WebPage
 	{
 		super(parameters);
 	}
+	
+	public static String offerIcon(Boolean male) {
+		return male == null ? "fixedoffer" : ( male ? "otheroffer" : "percentoffer");
+	}
 
 
 }

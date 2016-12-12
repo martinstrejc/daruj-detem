@@ -24,18 +24,21 @@
 	<resultMap type="Person" id="mapPersonGiftJoin" autoMapping="false">
 		<id property="id" column="p_id" />
 		<result property="name" column="p_name" />
+		<result property="age" column="p_age" />
+		<result property="male" column="p_male" />
 		<association property="gift" column="g_id" resultMap="mapGiftJoin" />
 	</resultMap>
 
 	<resultMap type="Gift" id="mapGiftJoin" autoMapping="false">
 		<id property="id" column="g_id" />
 		<result property="name" column="g_name" />
+		<result property="note" column="g_note" />
 	</resultMap>
 
-	<resultMap type="Person" id="mapPersonGiftReverse" autoMapping="false">
-		<id property="id" column="p_id" />
-		<result property="name" column="p_name" />
-		<association property="gift" column="g_id" resultMap="mapGiftJoin" />
+	<resultMap type="Person" id="mapPersonGiftReverse" autoMapping="false" extends="mapPersonGiftJoin">
+<!-- 		<id property="id" column="p_id" /> -->
+<!-- 		<result property="name" column="p_name" /> -->
+<!-- 		<association property="gift" column="g_id" resultMap="mapGiftJoin" /> -->
 		<association property="institute" column="i_id" resultMap="mapInstituteJoin" />
 	</resultMap>
 
@@ -56,12 +59,15 @@
 	<sql id="personColsJoin">
 				p.id as p_id,
 				p.name as p_name,
+				p.male as p_male,
+				p.age as p_age,
 				p.institute_id as p_institute_id
 	</sql>
 	
 	<sql id="giftColsJoin">
 				g.id as g_id,
 				g.name as g_name,
+				g.note as g_note,
 				g.person_id as g_person_id
 	</sql>
 
