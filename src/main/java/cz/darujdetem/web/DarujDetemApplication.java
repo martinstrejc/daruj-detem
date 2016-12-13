@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import cz.darujdetem.web.page.DesignPage;
+import cz.darujdetem.web.page.GiftConfirmationPage;
 import cz.darujdetem.web.page.GiftMailSentPage;
 import cz.darujdetem.web.page.GiftPage;
 import cz.darujdetem.web.page.HomePage;
@@ -35,6 +36,7 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 		InstitutePage.mount(this);
 		GiftPage.mount(this);
 		GiftMailSentPage.mount(this);
+		GiftConfirmationPage.mount(this);
 		
 		DesignPage.mount(this);
 		
