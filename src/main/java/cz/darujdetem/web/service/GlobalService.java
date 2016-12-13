@@ -1,5 +1,7 @@
 package cz.darujdetem.web.service;
 
+import cz.darujdetem.web.db.entity.Donor;
+
 /**
  * @author Martin Strejc
  *
@@ -7,5 +9,6 @@ package cz.darujdetem.web.service;
 public interface GlobalService
 {
 
+	void donorChoosesGift(Donor donor);
 	
 }

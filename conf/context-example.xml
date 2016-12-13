@@ -17,5 +17,10 @@
 	              testOnBorrow="true"
 	              validationQuery="select 1"
 	              />
+	              
+	<Environment name="mail.from" type="java.lang.String" value="daruj-detem@seznam.cz" />
+	<Environment name="mail.smtp.host" type="java.lang.String" value="smtp.seznam.cz" />
+	<Environment name="mail.smtp.user" type="java.lang.String" value="daruj-detem@seznam.cz" />
+	<Environment name="mail.smtp.password" type="java.lang.String" value="CHANGE_PASSWORD_HERE" />
               
 </Context>

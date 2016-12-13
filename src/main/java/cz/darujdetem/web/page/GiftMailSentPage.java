@@ -9,7 +9,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import cz.darujdetem.web.db.entity.Donor;
 import cz.darujdetem.web.model.CzechYearUnitModel;
-import cz.darujdetem.web.service.data.DataService;
+import cz.darujdetem.web.service.GlobalService;
 
 /**
  * @author Martin Strejc
@@ -23,11 +23,13 @@ public class GiftMailSentPage extends AbstractDesignPage
 
 	@SpringBean
 	@SuppressWarnings("squid:S1948")
-	private DataService dataService;
+	private GlobalService globalService;
 
 	public GiftMailSentPage(Donor donor)
 	{
 		super();
+		
+		globalService.donorChoosesGift(donor);
 
 		WebMarkupContainer pers = new WebMarkupContainer("person", new CompoundPropertyModel<>(donor.getPerson()));
 		add(pers);

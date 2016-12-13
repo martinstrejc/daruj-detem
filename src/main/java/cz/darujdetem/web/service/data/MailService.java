@@ -12,6 +12,6 @@ import cz.darujdetem.web.db.entity.Donor;
 public interface MailService
 {
 
-	void sentAddressConfirmation(Donor donor);
+	void sendGiftConfirmation(Donor donor);
 	
 }

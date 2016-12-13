@@ -1,7 +1,5 @@
 package cz.darujdetem.web.page;
 
-import java.util.Date;
-
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -97,7 +95,6 @@ public class GiftPage extends AbstractDesignPage
 		protected void onSubmit()
 		{
 			Donor donor = getModelObject();
-			donor.setTermsConfirmedDate(new Date());
 			setResponsePage(new GiftMailSentPage(donor));
 		}
 		
