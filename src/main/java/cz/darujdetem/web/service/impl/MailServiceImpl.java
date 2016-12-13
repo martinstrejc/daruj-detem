@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import cz.darujdetem.web.db.entity.Donor;
 import cz.darujdetem.web.db.entity.Gift;
+import cz.darujdetem.web.db.entity.Institute;
 import cz.darujdetem.web.db.entity.Person;
 import cz.darujdetem.web.service.MailSenderExcetion;
 import cz.darujdetem.web.service.data.MailService;
@@ -32,6 +33,8 @@ import cz.darujdetem.web.service.data.MailService;
  */
 public class MailServiceImpl implements MailService
 {
+	
+	public static final String BREAK_LINE = "<br/>";
 	
 	public static final String LANG = "cs";
 	
@@ -57,9 +60,9 @@ public class MailServiceImpl implements MailService
 			sb.append("<p>Děkujeme Vám za Váš zájem o děti z dětských domovů!<br/></p>");
 			sb.append("<p>Pro potvrzení Vašeho zájmu o dárek č. ");
 			sb.append(gift.getId());
-			sb.append(", ");
+			sb.append(", <strong>");
 			sb.append(gift.getName());
-			sb.append(" pro ");
+			sb.append("</strong> pro ");
 			sb.append(person.getName());
 			sb.append(" z ");
 			sb.append(person.getInstitute().getName());
@@ -78,6 +81,57 @@ public class MailServiceImpl implements MailService
 			log.error("Cannot send a mail to " + donor.getEmail() , e);
 		}
 	}
+
+	@Override
+	public void sendGiftDetails(Donor donor)
+	{
+		Person person = donor.getPerson();
+		Gift gift = person.getGift();
+		Institute institute = person.getInstitute();
+		
+		try
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.append("<h1>Dobrý den,<br/></h1>");
+			sb.append("<p>Děkujeme Vám za Váš zájem o děti z dětských domovů!<br/></p>");
+			sb.append("<p>Vámi vybraný dárek č. ");
+			sb.append(gift.getId());
+			sb.append(", <strong>");
+			sb.append(gift.getName());
+			sb.append("</strong> pro ");
+			sb.append(person.getName());
+			sb.append(" z ");
+			sb.append(person.getInstitute().getName());
+			sb.append(" je pro Vás právě zablokován pod číslem: ");
+			sb.append(donor.getId());
+			sb.append(".<br/></p>");
+			sb.append("<p><strong>Dárek po zakoupení odešlete na adresu:</strong>");
+			sb.append(BREAK_LINE);
+			sb.append(person.getName());
+			sb.append(", dárek č. ");
+			sb.append(gift.getId());
+			sb.append(BREAK_LINE);
+			sb.append(institute.getName());
+			sb.append(BREAK_LINE);
+			sb.append(institute.getAddress());
+			sb.append(BREAK_LINE);
+			sb.append(institute.getCity());
+			sb.append(BREAK_LINE);
+			sb.append(institute.getZip());
+			sb.append(BREAK_LINE);
+			sb.append("</p>");
+			sb.append("<p>Dárek prosím odešlete nejpozději 26.12.2016.<br/></p>");
+			sb.append("<p>Přeji Vám klidné a radostné Vánoční svátky!<br/></p>");
+			sb.append("<p>S pozdravem Jiří Vojáček</p>");
+			sendHtml(donor.getEmail(), "Detaily ke koupi darku c. " + gift.getId() + " (daruj-detem.cz)", sb.toString());
+		}
+		catch (MailSenderExcetion e)
+		{
+			log.error("Cannot send a mail to " + donor.getEmail() , e);
+		}
+	}
+
+	
 
 	public String prepareHtmlContent(String title, String body) {
 		StringBuilder sb = new StringBuilder();

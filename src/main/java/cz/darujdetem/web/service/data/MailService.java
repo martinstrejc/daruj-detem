@@ -13,5 +13,7 @@ public interface MailService
 {
 
 	void sendGiftConfirmation(Donor donor, String activationLink);
-	
+
+	void sendGiftDetails(Donor donor);
+
 }

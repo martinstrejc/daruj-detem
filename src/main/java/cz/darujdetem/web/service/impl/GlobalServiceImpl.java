@@ -44,6 +44,7 @@ public class GlobalServiceImpl implements GlobalService
 		mailService.sendGiftConfirmation(donor, url + donor.getHash());
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public Donor confirmGift(String hash)
 	{
@@ -57,6 +58,8 @@ public class GlobalServiceImpl implements GlobalService
 		if (giftId == null) {
 			return null;
 		}
+		
+		mailService.sendGiftDetails(donor);
 		
 		return donor;
 	}

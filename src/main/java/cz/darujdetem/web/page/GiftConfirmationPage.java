@@ -5,7 +5,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.protocol.http.RequestUtils;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.cycle.RequestCycle;
@@ -61,10 +60,7 @@ public class GiftConfirmationPage extends AbstractDesignPage
 	public static String absoluteAddress(String hash) {
 		return RequestCycle.get().getUrlRenderer().renderFullUrl(
 				Url.parse(
-					RequestUtils.toAbsolutePath(
-						RequestCycle.get().getRequest().getContextPath(), 
-						RequestCycle.get().getRequest().getPrefixToContextPath() + URI  + "/" + hash
-					)
+					RequestCycle.get().getRequest().getContextPath() + "/" + URI  + "/" + hash
 				)
 		);
 	}
