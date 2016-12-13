@@ -45,14 +45,13 @@ public class MailServiceImpl implements MailService
 	}
 
 	@Override
-	public void sendGiftConfirmation(Donor donor)
+	public void sendGiftConfirmation(Donor donor, String activationLink)
 	{
 		Person person = donor.getPerson();
 		Gift gift = person.getGift();
 		
 		try
 		{
-			String link = "http://daruj-detem.cz/xxxx";
 			StringBuilder sb = new StringBuilder();
 			sb.append("<h1>Dobrý den,<br/></h1>");
 			sb.append("<p>Děkujeme Vám za Váš zájem o děti z dětských domovů!<br/></p>");
@@ -66,9 +65,9 @@ public class MailServiceImpl implements MailService
 			sb.append(person.getInstitute().getName());
 			sb.append(" klikněte na následující odkaz: ");
 			sb.append("<a href=\"");
-			sb.append(link);
+			sb.append(activationLink);
 			sb.append("\">");
-			sb.append(link);
+			sb.append(activationLink);
 			sb.append("</a>.<br/></p>");
 			sb.append("<p>Pokud nelze odkaz otevřít z emailu, zkopírujte jej do schránky a otevřete ve webovém prohlížeči.<br/></p>");
 			sb.append("<p>S pozdravem Jiří Vojáček</p>");

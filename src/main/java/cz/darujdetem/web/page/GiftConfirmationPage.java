@@ -7,6 +7,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.RequestUtils;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Url;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -58,7 +59,14 @@ public class GiftConfirmationPage extends AbstractDesignPage
 	}
 	
 	public static String absoluteAddress(String hash) {
-		return RequestUtils.toAbsolutePath(RequestCycle.get().getRequest().getContextPath(), URI  + "/" + hash);
+		return RequestCycle.get().getUrlRenderer().renderFullUrl(
+				Url.parse(
+					RequestUtils.toAbsolutePath(
+						RequestCycle.get().getRequest().getContextPath(), 
+						RequestCycle.get().getRequest().getPrefixToContextPath() + URI  + "/" + hash
+					)
+				)
+		);
 	}
 
 	public long getDonorHash() {

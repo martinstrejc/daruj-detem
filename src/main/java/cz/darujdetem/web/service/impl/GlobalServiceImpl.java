@@ -38,7 +38,10 @@ public class GlobalServiceImpl implements GlobalService
 		donor.setTermsConfirmedDate(date);
 		donor.setHash(newHash(date));
 		
-		mailService.sendGiftConfirmation(donor);
+		long id = generalDao.insertDonor(donor);
+		donor.setId(id);
+		
+		mailService.sendGiftConfirmation(donor, url + donor.getHash());
 	}
 	
 	public static String newHash(Date date) {

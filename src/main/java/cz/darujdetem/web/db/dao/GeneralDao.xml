@@ -29,6 +29,10 @@
 		<association property="gift" column="g_id" resultMap="mapGiftJoin" />
 	</resultMap>
 
+	<resultMap type="Person" id="mapPersonGiftInstituteJoin" extends="mapPersonGiftJoin" autoMapping="false">
+		<association property="institute" column="p_institute_id" resultMap="mapInstituteJoin" />
+	</resultMap>
+
 	<resultMap type="Gift" id="mapGiftJoin" autoMapping="false">
 		<id property="id" column="g_id" />
 		<result property="name" column="g_name" />
@@ -36,10 +40,17 @@
 		<result property="img" column="g_img" />
 	</resultMap>
 
+	<resultMap type="Donor" id="mapDonorJoin" autoMapping="false">
+		<id property="id" column="d_id" />
+		<result property="name" column="d_name" />
+		<result property="hash" column="d_hash" />
+		<result property="email" column="d_email" />
+		<result property="phone" column="d_phone" />
+		<result property="termsConfirmed" column="d_terms_confirmed" />
+		<result property="termsConfirmedDate" column="d_terms_confirmed_date" />
+	</resultMap>
+
 	<resultMap type="Person" id="mapPersonGiftReverse" autoMapping="false" extends="mapPersonGiftJoin">
-<!-- 		<id property="id" column="p_id" /> -->
-<!-- 		<result property="name" column="p_name" /> -->
-<!-- 		<association property="gift" column="g_id" resultMap="mapGiftJoin" /> -->
 		<association property="institute" column="i_id" resultMap="mapInstituteJoin" />
 	</resultMap>
 
@@ -73,6 +84,16 @@
 				g.person_id as g_person_id
 	</sql>
 
+	<sql id="donorColsJoin">
+				d.id as d_id,
+				d.name as d_name,
+				d.email as d_email,
+				d.phone as d_phone,
+				d.terms_confirmed as d_terms_confirmed,
+				d.terms_confirmed_date as d_terms_confirmed_date,
+				d.gift_id as d_gift_id
+	</sql>
+
 	<select id="selectInstituteGifts" parameterType="long" resultMap="mapInstitutePersonGift">
 		SELECT 
 				i.*,
@@ -99,6 +120,42 @@
 				LEFT JOIN institute i ON (p.institute_id = i.id)
 			WHERE
 				g.id = #{giftId}				
+	</select>
+
+	<select id="selectDonor" parameterType="string" resultMap="mapDonorJoin">
+		SELECT 
+				<include refid="instituteColsJoin" />
+				<include refid="personColsJoin" />,
+				<include refid="giftColsJoin" />,
+				<include refid="donorColsJoin" />
+			FROM 
+				donor d
+				LEFT JOIN gift g ON (g.id = d.gift_id) 
+				LEFT JOIN person p ON (p.id = g.person_id)
+				LEFT JOIN institute i (i.id = p.institute_id)
+			WHERE 
+				d.hash = #{hash}
+	</select>
+	
+	<select id="insertDonor" parameterType="Donor" resultType="long">
+		INSERT INTO donor (
+				name,
+				email,
+				phone,
+				terms_confirmed,
+				terms_confirmed_date,
+				hash,
+				gift_id
+			) VALUES (
+				#{name},
+				#{email},
+				#{phone},
+				#{termsConfirmed},
+				#{termsConfirmedDate},
+				#{hash},
+				#{person.gift.id}
+			)
+			RETURNING id  
 	</select>
 	
 </mapper>
