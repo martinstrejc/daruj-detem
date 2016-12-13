@@ -74,7 +74,7 @@ public class GiftPage extends AbstractDesignPage
 	}
 	
 	public static BookmarkablePageLink<GiftPage> bookmarkablePageLink(String id, Gift gift) {
-		return new BookmarkablePageLink<>(id, GiftPage.class, GiftPage.linkParameters(gift));
+		return new BookmarkablePageLink<>(id, GiftPage.class, linkParameters(gift));
 	}
 	
 	private class DonorForm extends Form<Donor> {

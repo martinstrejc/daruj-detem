@@ -86,7 +86,7 @@ public class InstitutePage extends AbstractDesignPage
 	}
 	
 	public static BookmarkablePageLink<InstitutePage> bookmarkablePageLink(String id, Institute institute) {
-		return new BookmarkablePageLink<>(id, InstitutePage.class, InstitutePage.linkParameters(institute));
+		return new BookmarkablePageLink<>(id, InstitutePage.class, linkParameters(institute));
 	}
 	
 	
