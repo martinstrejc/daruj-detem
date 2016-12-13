@@ -3,7 +3,6 @@
  */
 package cz.darujdetem.web.service.impl;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -92,7 +91,7 @@ public class MailServiceImpl implements MailService
 			props.put("mail.transport.protocol", "smtps");
 
 		    props.put("mail.smtp.starttls.enable", "true");
-		    props.put("mail.smtp.socketFactory.port", "465");
+		    props.put("mail.smtp.socketFactory.port", config.getSmtpPort());
 		    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
 		    props.put("mail.smtp.timeout", "10000");
@@ -105,7 +104,7 @@ public class MailServiceImpl implements MailService
 		    props.put("mail.smtp.socketFactory.fallback", "false");
 			
 			props.put("mail.smtp.host", config.getSmtpHost());
-		    props.put("mail.smtp.port", "465");
+		    props.put("mail.smtp.port", config.getSmtpPort());
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.user", config.getSmtpUser());
 			Authenticator auth = new Authenticator() {

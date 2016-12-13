@@ -25,10 +25,13 @@ public class MailJeeConfig {
 	
 	@Resource(mappedName = "mail.smtp.password")
 	private String smtpPassword;
-	
+
+	@Resource(mappedName = "mail.smtp.port")
+	private Integer smtpPort;
+
 	@Bean
 	public MailConfigBean mailConfigBean() {
-		return new MailConfigBean(from, smtpHost, smtpUser, smtpPassword);
+		return new MailConfigBean(from, smtpHost, smtpUser, smtpPassword, smtpPort);
 	}
 	
 
