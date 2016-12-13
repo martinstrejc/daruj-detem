@@ -3,7 +3,6 @@ package cz.darujdetem.web.page;
 import java.util.Date;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.CheckBox;
@@ -12,6 +11,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -19,13 +19,15 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import cz.darujdetem.web.db.entity.Donor;
 import cz.darujdetem.web.db.entity.Gift;
 import cz.darujdetem.web.db.entity.Person;
+import cz.darujdetem.web.model.CzechYearUnitModel;
 import cz.darujdetem.web.service.data.DataService;
 
 /**
  * @author Martin Strejc
  *
  */
-public class GiftPage extends WebPage
+@SuppressWarnings("squid:MaximumInheritanceDepth")
+public class GiftPage extends AbstractDesignPage
 {
 
 	private static final long serialVersionUID = 1L;
@@ -43,13 +45,17 @@ public class GiftPage extends WebPage
 		WebMarkupContainer pers = new WebMarkupContainer("person", new CompoundPropertyModel<>(person));
 		add(pers);
 		
-		pers.add(new Label("name"));
-		pers.add(new Label("institute.name"));
+		pers.queue(new Label("name"));
+		pers.queue(new Label("institute.name"));
+		pers.queue(new Label("gift.name"));
+		pers.queue(new Label("age"));
+		pers.queue(new Label("ageUnit", new CzechYearUnitModel(Model.of(person.getAge()))));
+		
 		
 		Donor donor = new Donor();
 		donor.setPerson(person);
 		
-		pers.add(new DonorForm("donor", donor));
+		pers.queue(new DonorForm("donor", donor));
 		
 	}
 

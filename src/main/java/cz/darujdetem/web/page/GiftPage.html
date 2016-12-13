@@ -8,23 +8,38 @@
 
 <h1>Daruj detem</h1>
 
-<div wicket:id="person">
+<wicket:extend>
 
-<h2><span wicket:id="name">[person name]</span> / <span wicket:id="institute.name">[Institute Name]</span> </h2>
+	
+    <!-- ===========================
+    SUBSCRIBE SECTION
+    =========================== -->
+    <div id="subscribe" wicket:id="person">
+        <div class="darkoverlay">
+            <div class="container text-center">
+                <img class="santaicon wow tada infinite" data-wow-duration="20s" src="img/santa-sm.png" alt="">
+                <div class="sectionhead">            
+                    <h2><span wicket:id="name">[person name]</span> – <span wicket:id="gift.name">darek</span></h2>
+                    <p wicket:id="institute.name">Nazev instituce</p>
+                    <p>Věk: <span wicket:id="age">7</span> <span wicket:id="ageUnit">let</span> </p>
+                </div><!--SECTIONHEAD END-->            
 
-<div>
+                <!--MAILCHIMP FORM START-->  
+                <div class="mailchimp">
+                    <form wicket:id="donor" class="validate">
 
-	<form wicket:id="donor">
-		<div>Email: <input type="email" wicket:id="email"/> </div>
-		<div>Jmeno: <input type="text" wicket:id="name"/> </div>
-		<div>Telefon: <input type="text" wicket:id="phone"/> </div>
-		<div>Souhlasim s vseobecnymi podminkami: <input type="checkbox" wicket:id="termsConfirmed"/> </div>
-		<button wicket:id="submit">Chci darovat</button>
-	</form>
+						<div>E-mail: <input type="email" wicket:id="email" required="required" /> </div>
+						<div>Jméno: <input type="text" wicket:id="name" /> </div>
+						<div>Telefon: <input type="text" wicket:id="phone" /> </div>
+						<div>Souhlasím s všeobecnými podmínkami: <input type="checkbox" wicket:id="termsConfirmed"/> </div>
+						<input type="submit" wicket:id="submit" value="Chci darovat" class="btn btn-inverse" />
+                    </form>
+                </div>
+            </div><!--SUBSCRIBE CONTAINER END-->
+        </div><!--OVERLAY END-->
+    </div><!--SUBSCRIBE SECTION END-->        
 
-</div>
-
-</div>
+</wicket:extend>
 
 </body>
 </html>
