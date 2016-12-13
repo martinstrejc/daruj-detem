@@ -32,12 +32,12 @@ public class GiftConfirmationPage extends AbstractDesignPage
 	@SuppressWarnings("squid:S1948")
 	private GlobalService globalService;
 
-	public GiftConfirmationPage(Donor donor)
+	public GiftConfirmationPage(PageParameters pageParameters)
 	{
-		super();
+		super(pageParameters);
 		
-		// globalService.donorChoosesGift(donor);
-
+		Donor donor = globalService.confirmGift(getDonorHash());
+		
 		WebMarkupContainer pers = new WebMarkupContainer("person", new CompoundPropertyModel<>(donor.getPerson()));
 		add(pers);
 		
@@ -69,8 +69,8 @@ public class GiftConfirmationPage extends AbstractDesignPage
 		);
 	}
 
-	public long getDonorHash() {
-		return getPageParameters().get("hash").toLong();
+	public String getDonorHash() {
+		return getPageParameters().get("hash").toString();
 	}
 
 	public static PageParameters linkParameters(Donor donor)

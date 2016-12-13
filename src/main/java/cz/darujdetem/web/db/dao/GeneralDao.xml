@@ -48,6 +48,7 @@
 		<result property="phone" column="d_phone" />
 		<result property="termsConfirmed" column="d_terms_confirmed" />
 		<result property="termsConfirmedDate" column="d_terms_confirmed_date" />
+		<association property="person" column="p_id" resultMap="mapPersonGiftReverse" />		
 	</resultMap>
 
 	<resultMap type="Person" id="mapPersonGiftReverse" autoMapping="false" extends="mapPersonGiftJoin">
@@ -124,7 +125,7 @@
 
 	<select id="selectDonor" parameterType="string" resultMap="mapDonorJoin">
 		SELECT 
-				<include refid="instituteColsJoin" />
+				<include refid="instituteColsJoin" />,
 				<include refid="personColsJoin" />,
 				<include refid="giftColsJoin" />,
 				<include refid="donorColsJoin" />
@@ -132,7 +133,7 @@
 				donor d
 				LEFT JOIN gift g ON (g.id = d.gift_id) 
 				LEFT JOIN person p ON (p.id = g.person_id)
-				LEFT JOIN institute i (i.id = p.institute_id)
+				LEFT JOIN institute i ON (i.id = p.institute_id)
 			WHERE 
 				d.hash = #{hash}
 	</select>
@@ -156,6 +157,10 @@
 				#{person.gift.id}
 			)
 			RETURNING id  
+	</select>
+	
+	<select id="updateGiftDonorship" parameterType="map" resultType="long">
+		UPDATE gift SET donor_id = #{donorId} WHERE id = #{giftId} AND donor_id IS NULL RETURNING id
 	</select>
 	
 </mapper>

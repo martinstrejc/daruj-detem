@@ -11,4 +11,6 @@ public interface GlobalService
 
 	void donorChoosesGift(Donor donor, String url);
 	
+	Donor confirmGift(String hash);
+	
 }

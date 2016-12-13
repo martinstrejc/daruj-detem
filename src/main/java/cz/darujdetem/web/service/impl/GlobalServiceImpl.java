@@ -43,7 +43,25 @@ public class GlobalServiceImpl implements GlobalService
 		
 		mailService.sendGiftConfirmation(donor, url + donor.getHash());
 	}
-	
+
+	@Override
+	public Donor confirmGift(String hash)
+	{
+		Donor donor = generalDao.selectDonor(hash);
+		if (donor == null) {
+			return null;
+		}
+		
+		Long giftId = generalDao.updateGiftDonorship(donor.getPerson().getGift().getId(), donor.getId());
+		
+		if (giftId == null) {
+			return null;
+		}
+		
+		return donor;
+	}
+		
+
 	public static String newHash(Date date) {
 		return Hashing.sha1().hashString(newHashBase(date), Charsets.UTF_8).toString();
 	}
@@ -51,5 +69,5 @@ public class GlobalServiceImpl implements GlobalService
 	public static String newHashBase(Date date) {
 		return UUID.randomUUID().toString() + date.toString();
 	}
-		
+
 }
