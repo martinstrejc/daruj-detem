@@ -57,6 +57,10 @@ public class InstitutePage extends AbstractDesignPage
 		add(inst);
 		
 		inst.add(new Label("name"));
+		inst.add(new Label("address"));
+		inst.add(new Label("city"));
+		inst.add(new Label("zip"));
+		inst.add(new Label("web"));
 		
 		List<ICellPopulator<TwoPersons>> populators = new LinkedList<>();
 		populators.add(new TwoPersonPopulator((tp) -> tp.getLeft()));

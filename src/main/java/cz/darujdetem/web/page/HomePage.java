@@ -41,7 +41,10 @@ public class HomePage extends AbstractDesignPage
 				Institute i = item.getModelObject();
 				item.queue(InstitutePage.bookmarkablePageLink("link", i));
 				item.queue(new Label("name"));
-				item.queue(new WebMarkupContainer("img").add(new AttributeModifier("src", IMG_ROOT + "o" + i.getDesignNum() + ".png")));
+				item.queue(new Label("address"));
+				item.queue(new Label("city"));
+				item.queue(new Label("zip"));
+				item.queue(new WebMarkupContainer("img").add(new AttributeModifier("src", IMG_ROOT + "o5.png")));
 			}
 			
 		});
