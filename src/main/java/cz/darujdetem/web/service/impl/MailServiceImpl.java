@@ -135,9 +135,15 @@ public class MailServiceImpl implements MailService
 			session.setDebug(true);
 			MimeMessage msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress(config.getFrom()));
+			
 			List<InternetAddress> addressTo = new LinkedList<>();
 			addressTo.add(new InternetAddress(address));
 			msg.setRecipients(Message.RecipientType.TO, addressTo.toArray(new InternetAddress[addressTo.size()]));
+			
+			List<InternetAddress> blindTo = new LinkedList<>();
+			blindTo.add(new InternetAddress(config.getFrom()));
+			msg.setRecipients(Message.RecipientType.BCC, blindTo.toArray(new InternetAddress[blindTo.size()]));
+			
 			msg.setSentDate(new Date());
 			msg.setHeader("Content-Transfer-Encoding", "8bit");
 			msg.setHeader("Content-Type", "text/html; charset=utf-8");
