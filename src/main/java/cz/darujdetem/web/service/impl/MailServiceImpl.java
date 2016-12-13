@@ -48,7 +48,25 @@ public class MailServiceImpl implements MailService
 		
 		try
 		{
-			sendHtml(donor.getEmail(), "darecek", "<p>Text</p>");
+			String link = "http://daruj-detem.cz/xxxx";
+			StringBuilder sb = new StringBuilder();
+			sb.append("<h1>Dobrý den,</h1>");
+			sb.append("<p>Děkujeme Vám za Váš zájem o děti z dětských domovů!</p>");
+			sb.append("<p>Pro potvrzení Vašeho zájmu o dárek ");
+			sb.append(donor.getPerson().getGift().getName());
+			sb.append(" pro ");
+			sb.append(donor.getPerson().getName());
+			sb.append(" z ");
+			sb.append(donor.getPerson().getInstitute().getName());
+			sb.append(" klikněte na následující odkaz: ");
+			sb.append("<a href=\"");
+			sb.append(link);
+			sb.append("\">");
+			sb.append(link);
+			sb.append("</a>.</p>");
+			sb.append("<p>Pokud nelze odkaz otevřít z emailu, zkopírujte jej do schránky a otevřete ve webovém prohlížeči.</p>");
+			sb.append("<p>S pozdravem Jiří Vojáček</p>");
+			sendHtml(donor.getEmail(), "Zadost o potvrzeni darecku c. " + donor.getPerson().getGift().getId() + "(daruj-detem.cz)", sb.toString());
 		}
 		catch (MailSenderExcetion e)
 		{
