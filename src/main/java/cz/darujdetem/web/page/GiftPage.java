@@ -61,7 +61,7 @@ public class GiftPage extends AbstractDesignPage
 
 	public static void mount(WebApplication application)
 	{
-		application.mountPage("darek/${id}/${name}", GiftPage.class);
+		application.mountPage("chci-darovat-darek/${id}/${name}", GiftPage.class);
 	}
 	
 	public long getGiftId() {
@@ -98,7 +98,7 @@ public class GiftPage extends AbstractDesignPage
 		{
 			Donor donor = getModelObject();
 			donor.setTermsConfirmedDate(new Date());
-			setResponsePage(new ThankYouPage(donor));
+			setResponsePage(new GiftMailSentPage(donor));
 		}
 		
 	}

@@ -174,7 +174,9 @@ public class InstitutePage extends AbstractDesignPage
 		public void populateItem(Item<ICellPopulator<TwoPersons>> cellItem, String componentId,
 			IModel<TwoPersons> rowModel)
 		{
-			cellItem.add(new GiftPanel(componentId, new CompoundPropertyModel<>(personResolver.apply(rowModel.getObject()))));
+			Person p = personResolver.apply(rowModel.getObject());
+			cellItem.add(p == null ? new WebMarkupContainer(componentId) :
+				new GiftPanel(componentId, new CompoundPropertyModel<>(p)));
 		}
 		
 	}
