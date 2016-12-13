@@ -5,12 +5,15 @@ import javax.sql.DataSource;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.transaction.SpringManagedTransactionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.support.ResourceTransactionManager;
 
 import cz.darujdetem.web.db.MyBatisDaoPackageMarker;
 import cz.darujdetem.web.service.data.DataServicePackageMarker;
@@ -30,7 +33,7 @@ public class DataAccessConfig {
 	@javax.annotation.Resource(mappedName = "jdbc/daruj")
 	private DataSource dataSource;
 
-	@Autowired(required = false)
+	@Autowired	// (required = false)
 	private TransactionFactory transactionFactory;
 
 	@Bean 
@@ -43,5 +46,14 @@ public class DataAccessConfig {
 		return sqlSessionFactory;
 	}
 	
+	@Bean
+	public ResourceTransactionManager txManager() {
+		return new DataSourceTransactionManager(dataSource);
+	}
+	
+	@Bean
+	public TransactionFactory transactionFactory() {
+		return new SpringManagedTransactionFactory();
+	}
 
 }
