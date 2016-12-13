@@ -71,7 +71,7 @@ public class MailServiceImpl implements MailService
 			sb.append("</a>.<br/></p>");
 			sb.append("<p>Pokud nelze odkaz otevřít z emailu, zkopírujte jej do schránky a otevřete ve webovém prohlížeči.<br/></p>");
 			sb.append("<p>S pozdravem Jiří Vojáček</p>");
-			sendHtml(donor.getEmail(), "Zadost o potvrzeni darecku c. " + gift.getId() + " (daruj-detem.cz)", sb.toString());
+			sendHtml(donor.getEmail(), "Zadost o potvrzeni darku c. " + gift.getId() + " (daruj-detem.cz)", sb.toString());
 		}
 		catch (MailSenderExcetion e)
 		{
