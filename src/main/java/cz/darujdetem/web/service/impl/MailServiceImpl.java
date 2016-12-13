@@ -21,6 +21,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cz.darujdetem.web.db.entity.Donor;
+import cz.darujdetem.web.db.entity.Gift;
+import cz.darujdetem.web.db.entity.Person;
 import cz.darujdetem.web.service.MailSenderExcetion;
 import cz.darujdetem.web.service.data.MailService;
 
@@ -45,28 +47,32 @@ public class MailServiceImpl implements MailService
 	@Override
 	public void sendGiftConfirmation(Donor donor)
 	{
+		Person person = donor.getPerson();
+		Gift gift = person.getGift();
 		
 		try
 		{
 			String link = "http://daruj-detem.cz/xxxx";
 			StringBuilder sb = new StringBuilder();
-			sb.append("<h1>Dobrý den,</h1>");
-			sb.append("<p>Děkujeme Vám za Váš zájem o děti z dětských domovů!</p>");
-			sb.append("<p>Pro potvrzení Vašeho zájmu o dárek ");
-			sb.append(donor.getPerson().getGift().getName());
+			sb.append("<h1>Dobrý den,<br/></h1>");
+			sb.append("<p>Děkujeme Vám za Váš zájem o děti z dětských domovů!<br/></p>");
+			sb.append("<p>Pro potvrzení Vašeho zájmu o dárek č. ");
+			sb.append(gift.getId());
+			sb.append(", ");
+			sb.append(gift.getName());
 			sb.append(" pro ");
-			sb.append(donor.getPerson().getName());
+			sb.append(person.getName());
 			sb.append(" z ");
-			sb.append(donor.getPerson().getInstitute().getName());
+			sb.append(person.getInstitute().getName());
 			sb.append(" klikněte na následující odkaz: ");
 			sb.append("<a href=\"");
 			sb.append(link);
 			sb.append("\">");
 			sb.append(link);
-			sb.append("</a>.</p>");
-			sb.append("<p>Pokud nelze odkaz otevřít z emailu, zkopírujte jej do schránky a otevřete ve webovém prohlížeči.</p>");
+			sb.append("</a>.<br/></p>");
+			sb.append("<p>Pokud nelze odkaz otevřít z emailu, zkopírujte jej do schránky a otevřete ve webovém prohlížeči.<br/></p>");
 			sb.append("<p>S pozdravem Jiří Vojáček</p>");
-			sendHtml(donor.getEmail(), "Zadost o potvrzeni darecku c. " + donor.getPerson().getGift().getId() + "(daruj-detem.cz)", sb.toString());
+			sendHtml(donor.getEmail(), "Zadost o potvrzeni darecku c. " + gift.getId() + " (daruj-detem.cz)", sb.toString());
 		}
 		catch (MailSenderExcetion e)
 		{
