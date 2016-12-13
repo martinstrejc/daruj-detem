@@ -49,7 +49,7 @@ public class HomePage extends AbstractDesignPage
 	
 	public static void mount(WebApplication application)
 	{
-		application.mountPage("/home", HomePage.class);
+		application.mountPage("/detske-domovy", HomePage.class);
 	}
 
 
