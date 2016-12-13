@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -19,6 +20,7 @@ import org.springframework.util.StringUtils;
 import cz.darujdetem.web.db.entity.Gift;
 import cz.darujdetem.web.db.entity.Institute;
 import cz.darujdetem.web.db.entity.Person;
+import cz.darujdetem.web.model.CzechYearUnitModel;
 import cz.darujdetem.web.service.data.DataService;
 
 /**
@@ -108,6 +110,7 @@ public class InstitutePage extends AbstractDesignPage
 			queue(new Label("gift.note"));
 			queue(new Label("gift.name"));
 			queue(new Label("age"));
+			queue(new Label("ageUnit", new CzechYearUnitModel(Model.of(p.getAge()))));
 			queue(new WebMarkupContainer("male").add(new AttributeAppender("class", offerIcon(p.getMale())).setSeparator(" ")));
 			
 			
