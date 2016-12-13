@@ -21,7 +21,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.springframework.util.StringUtils;
@@ -121,7 +120,7 @@ public class InstitutePage extends AbstractDesignPage
 			String relativePath  = "/img/" + (StringUtils.isEmpty(g.getImg()) ? "" : g.getImg() );
 			
 			
-			link.add(new WebMarkupContainer("img").add(new AttributeModifier("src", RequestCycle.get().getRequest().getContextPath() + relativePath)));
+			link.add(new WebMarkupContainer("img").add(new AttributeModifier("src", getRequest().getContextPath() + relativePath)));
 			
 			
 		}

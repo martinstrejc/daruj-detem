@@ -37,5 +37,8 @@ public abstract class AbstractDesignPage extends WebPage
 		return male == null ? "fixedoffer" : ( male ? "otheroffer" : "percentoffer");
 	}
 
+	public String getContextPath() {
+		return getRequest().getContextPath();
+	}
 
 }

@@ -5,7 +5,9 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.protocol.http.RequestUtils;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -22,6 +24,8 @@ public class GiftConfirmationPage extends AbstractDesignPage
 {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final String URI = "potvrzeni-zajmu-o-darek";
 
 	@SpringBean
 	@SuppressWarnings("squid:S1948")
@@ -31,7 +35,7 @@ public class GiftConfirmationPage extends AbstractDesignPage
 	{
 		super();
 		
-		globalService.donorChoosesGift(donor);
+		// globalService.donorChoosesGift(donor);
 
 		WebMarkupContainer pers = new WebMarkupContainer("person", new CompoundPropertyModel<>(donor.getPerson()));
 		add(pers);
@@ -46,7 +50,15 @@ public class GiftConfirmationPage extends AbstractDesignPage
 
 	public static void mount(WebApplication application)
 	{
-		application.mountPage("potvrzeni-zajmu-o-darek/${hash}", GiftConfirmationPage.class);
+		application.mountPage(URI + "/${hash}", GiftConfirmationPage.class);
+	}
+	
+	public static String absoluteAddress() {
+		return absoluteAddress("");
+	}
+	
+	public static String absoluteAddress(String hash) {
+		return RequestUtils.toAbsolutePath(RequestCycle.get().getRequest().getContextPath(), URI  + "/" + hash);
 	}
 
 	public long getDonorHash() {

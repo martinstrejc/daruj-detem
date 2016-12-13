@@ -29,7 +29,7 @@ public class GiftMailSentPage extends AbstractDesignPage
 	{
 		super();
 		
-		globalService.donorChoosesGift(donor);
+		globalService.donorChoosesGift(donor, GiftConfirmationPage.absoluteAddress());
 
 		WebMarkupContainer pers = new WebMarkupContainer("person", new CompoundPropertyModel<>(donor.getPerson()));
 		add(pers);

@@ -17,6 +17,8 @@ public class Donor extends EntityNameId
 
 	private static final long serialVersionUID = 1L;
 	
+	private String hash;
+	
 	private String email;
 	
 	private String phone;
@@ -86,6 +88,16 @@ public class Donor extends EntityNameId
 	{
 		this.person = person;
 	}
+	
+	public String getHash()
+	{
+		return hash;
+	}
+
+	public void setHash(String hash)
+	{
+		this.hash = hash;
+	}
 
 	@Override
 	protected ToStringHelper toStringHelper()
@@ -93,6 +105,7 @@ public class Donor extends EntityNameId
 		return super.toStringHelper()
 			.add("email", email)
 			.add("phone", phone)
+			.add("hash", hash)
 			.add("termsConfirmed", termsConfirmed)
 			.add("termsConfirmedDate", termsConfirmedDate);
 	}

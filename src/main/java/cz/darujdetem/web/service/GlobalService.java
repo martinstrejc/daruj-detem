@@ -9,6 +9,6 @@ import cz.darujdetem.web.db.entity.Donor;
 public interface GlobalService
 {
 
-	void donorChoosesGift(Donor donor);
+	void donorChoosesGift(Donor donor, String url);
 	
 }
