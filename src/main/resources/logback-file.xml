@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
 
+	<property name="LOG_HOME" value="/var/log/tomcat" />
+
+<!--
+
 	<appender name="STDOUT" class="ch.qos.logback.core.FileAppender">
+		
 		<file>/var/log/tomcat/daruj-detem.log</file>
-		<!-- encoders are assigned the type
-		ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
 		</encoder>
 	</appender>
-	 
+-->
+
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/daruj.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${LOG_HOME}/daruj.%d{yyyy-MM-dd}.%i.log
+                        </fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
 </included>
+
