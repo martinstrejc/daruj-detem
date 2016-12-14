@@ -62,8 +62,8 @@ public class InstitutePage extends AbstractDesignPage
 		inst.add(new Label("web"));
 		
 		List<ICellPopulator<TwoPersons>> populators = new LinkedList<>();
-		populators.add(new TwoPersonPopulator((tp) -> tp.getLeft()));
-		populators.add(new TwoPersonPopulator((tp) -> tp.getRight()));
+		populators.add(new TwoPersonPopulator(tp -> tp.getLeft()));
+		populators.add(new TwoPersonPopulator(tp -> tp.getRight()));
 		inst.add(new DataGridView<>("personGrid", populators, new TwoPersonDataProvider(institute.getPersons())));
 		
 	}
@@ -98,16 +98,20 @@ public class InstitutePage extends AbstractDesignPage
 			super(id, model);
 			Person p = model.getObject();
 			Gift g = p.getGift();
-			WebMarkupContainer link;
-			if (g == null) {
-				link = new WebMarkupContainer("link");
-			} else {
-				link = GiftPage.bookmarkablePageLink("link", g);
-			}
+			boolean enableLink = g != null && g.getDonorId() == null;
+			WebMarkupContainer link = enableLink ?
+				GiftPage.bookmarkablePageLink("link", g)
+				:
+				new WebMarkupContainer("link");
 			add(link);
 			add(new Label("name"));
 			add(new Label("gift.note"));
 			add(new Label("gift.name"));
+			WebMarkupContainer reserved = new WebMarkupContainer("reservered");
+			add(reserved);
+			reserved.add(new Label("gift.donorId"));
+			reserved.setVisible(!enableLink);
+			
 			
 			WebMarkupContainer male = new WebMarkupContainer("male");
 			male.add(new AttributeAppender("class", offerIcon(p.getMale())).setSeparator(" "));

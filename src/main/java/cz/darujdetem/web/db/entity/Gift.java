@@ -15,6 +15,8 @@ public class Gift extends EntityNameId
 	private String note;
 	
 	private String img;
+	
+	private Long donorId;
 
 	public Gift()
 	{
@@ -44,6 +46,16 @@ public class Gift extends EntityNameId
 	public void setImg(String img)
 	{
 		this.img = img;
+	}
+
+	public Long getDonorId()
+	{
+		return donorId;
+	}
+
+	public void setDonorId(Long donorId)
+	{
+		this.donorId = donorId;
 	}
 	
 }

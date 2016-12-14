@@ -38,6 +38,7 @@
 		<result property="name" column="g_name" />
 		<result property="note" column="g_note" />
 		<result property="img" column="g_img" />
+		<result property="donorId" column="g_donor_id" />
 	</resultMap>
 
 	<resultMap type="Donor" id="mapDonorJoin" autoMapping="false">
@@ -82,6 +83,7 @@
 				g.name as g_name,
 				g.note as g_note,
 				g.img as g_img,
+				g.donor_id as g_donor_id,
 				g.person_id as g_person_id
 	</sql>
 
