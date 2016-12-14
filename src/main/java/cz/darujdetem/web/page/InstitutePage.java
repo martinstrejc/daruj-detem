@@ -121,7 +121,7 @@ public class InstitutePage extends AbstractDesignPage
 			
 			
 			// FIXME building the path
-			String relativePath  = "/img/" + (StringUtils.isEmpty(g.getImg()) ? "" : g.getImg() );
+			String relativePath  = "/img/small/" + (StringUtils.isEmpty(g.getImg()) ? "" : g.getImg() );
 			
 			
 			link.add(new WebMarkupContainer("img").add(new AttributeModifier("src", getRequest().getContextPath() + relativePath)));
