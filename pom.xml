@@ -20,7 +20,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<targetJdk>1.8</targetJdk> <!-- workaround for http://jira.codehaus.org/browse/MPMD-67 -->
-		<slf4j.version>1.7.2</slf4j.version>
+		<slf4j.version>1.7.22</slf4j.version>
+<!-- 		<log4j.version>2.7</log4j.version> -->
+		<logback.version>1.1.8</logback.version>
+		<janino.version>2.7.8</janino.version>
 		<junit.version>4.12</junit.version>
 		<mockito.version>1.9.5</mockito.version>
 		<servlet-api.version>2.5</servlet-api.version>
@@ -81,11 +84,34 @@
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<artifactId>jul-to-slf4j</artifactId>
 			<version>${slf4j.version}</version>
-			<!-- <scope>runtime</scope> -->
 		</dependency>
 
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.slf4j</groupId> -->
+<!-- 			<artifactId>slf4j-log4j12</artifactId> -->
+<!-- 			<version>${slf4j.version}</version> -->
+<!-- 		</dependency> -->
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+	 
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>janino</artifactId>
+			<version>${janino.version}</version>
+		</dependency>
+    
 		<!-- since we want the jcl over slf4j, we need to bump up the version of 
 			slf4j-api that wicket brings in -->
 		<dependency>
