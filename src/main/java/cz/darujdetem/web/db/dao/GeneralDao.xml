@@ -139,6 +139,22 @@
 			WHERE 
 				d.hash = #{hash}
 	</select>
+
+	<select id="selectDonors" resultMap="mapDonorJoin">
+		SELECT 
+				<include refid="instituteColsJoin" />,
+				<include refid="personColsJoin" />,
+				<include refid="giftColsJoin" />,
+				<include refid="donorColsJoin" />
+			FROM 
+				donor d
+				LEFT JOIN gift g ON (g.id = d.gift_id) 
+				LEFT JOIN person p ON (p.id = g.person_id)
+				LEFT JOIN institute i ON (i.id = p.institute_id)
+			ORDER BY 
+				d.terms_confirmed_date DESC, 
+				d.id DESC
+	</select>
 	
 	<select id="insertDonor" parameterType="Donor" resultType="long">
 		INSERT INTO donor (

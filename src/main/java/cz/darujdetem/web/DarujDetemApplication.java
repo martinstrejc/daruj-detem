@@ -16,6 +16,7 @@ import cz.darujdetem.web.page.GiftMailSentPage;
 import cz.darujdetem.web.page.GiftPage;
 import cz.darujdetem.web.page.HomePage;
 import cz.darujdetem.web.page.InstitutePage;
+import cz.darujdetem.web.page.admin.AdminPage;
 import cz.darujdetem.web.security.DarujDetemSession;
 
 /**
@@ -38,6 +39,8 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 		GiftPage.mount(this);
 		GiftMailSentPage.mount(this);
 		GiftConfirmationPage.mount(this);
+		
+		AdminPage.mount(this);
 		
 		DesignPage.mount(this);
 		
