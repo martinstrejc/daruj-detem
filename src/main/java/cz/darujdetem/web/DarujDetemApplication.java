@@ -6,7 +6,6 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authroles.authentication.pages.SignInPage;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -48,7 +47,7 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 	}
 
 	@Override
-	public void setApplicationContext(ApplicationContext context) throws BeansException
+	public void setApplicationContext(ApplicationContext context) 
 	{
 		this.context = context;
 

@@ -14,6 +14,7 @@ import cz.darujdetem.web.service.impl.MailConfigBean;
 @Configuration
 public class MailJeeConfig {
 
+
 	@Resource(mappedName = "mail.from")
 	private String from;
 	
@@ -34,5 +35,4 @@ public class MailJeeConfig {
 		return new MailConfigBean(from, smtpHost, smtpUser, smtpPassword, smtpPort);
 	}
 	
-
 }

@@ -3,12 +3,16 @@
  */
 package cz.darujdetem.web.service.impl;
 
+import java.io.Serializable;
+
 /**
  * @author Martin Strejc
  *
  */
-public class MailConfigBean
+public class MailConfigBean implements Serializable
 {
+
+	private static final long serialVersionUID = 1L;
 
 	private final String from;
 

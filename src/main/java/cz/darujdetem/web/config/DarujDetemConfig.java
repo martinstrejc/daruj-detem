@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
  *
  */
 @Configuration
-@Import({MailJeeConfig.class, ApplicationContextConfig.class, DataAccessConfig.class, ServiceConfig.class})
+@Import({MailJeeConfig.class, DarujJeeConfig.class, ApplicationContextConfig.class, DataAccessConfig.class, ServiceConfig.class})
 @EnableAspectJAutoProxy
 public class DarujDetemConfig {
 	
