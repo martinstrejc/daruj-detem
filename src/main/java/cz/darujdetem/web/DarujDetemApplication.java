@@ -3,6 +3,7 @@ package cz.darujdetem.web;
 import org.apache.wicket.Page;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
+import org.apache.wicket.authroles.authentication.pages.SignInPage;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.beans.BeansException;
@@ -52,8 +53,7 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 	@Override
 	protected Class<? extends WebPage> getSignInPageClass()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return SignInPage.class;
 	}
 
 	@Override

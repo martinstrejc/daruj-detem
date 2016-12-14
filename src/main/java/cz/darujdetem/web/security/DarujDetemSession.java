@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cz.darujdetem.web.security;
 
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
@@ -24,15 +21,14 @@ public class DarujDetemSession extends AuthenticatedWebSession
 	@Override
 	protected boolean authenticate(String username, String password)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		// FIXME admin/admin
+		return "admin".equals(username) && "admin.1234".equals(password);
 	}
 
 	@Override
 	public Roles getRoles()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return isSignedIn() ? new Roles(Roles.ADMIN) : null;
 	}
 
 }
