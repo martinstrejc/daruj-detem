@@ -40,6 +40,7 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 		GiftMailSentPage.mount(this);
 		GiftConfirmationPage.mount(this);
 		
+		mountPage("secure/login", SignInPage.class);
 		AdminPage.mount(this);
 		
 		DesignPage.mount(this);
