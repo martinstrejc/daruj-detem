@@ -13,6 +13,9 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.validation.IValidatable;
+import org.apache.wicket.validation.IValidator;
+import org.apache.wicket.validation.ValidationError;
 
 import cz.darujdetem.web.db.entity.Donor;
 import cz.darujdetem.web.db.entity.Gift;
@@ -29,6 +32,8 @@ public class GiftPage extends AbstractDesignPage
 {
 
 	private static final long serialVersionUID = 1L;
+
+	private static final IValidator<Boolean> TERMS_VALIDATOR = new TermsValidator();
 
 	@SpringBean
 	@SuppressWarnings("squid:S1948")
@@ -79,6 +84,7 @@ public class GiftPage extends AbstractDesignPage
 	
 	private class DonorForm extends Form<Donor> {
 
+		
 		private static final long serialVersionUID = 1L;
 
 		public DonorForm(String id, Donor donor)
@@ -87,7 +93,7 @@ public class GiftPage extends AbstractDesignPage
 			add(new EmailTextField("email").setRequired(true));
 			add(new TextField<String>("name").setRequired(false));
 			add(new TextField<String>("phone").setRequired(false));
-			add(new CheckBox("termsConfirmed").setRequired(true));
+			add(new CheckBox("termsConfirmed").add(TERMS_VALIDATOR).setRequired(true));
 			add(new Button("submit"));
 		}
 		
@@ -96,6 +102,21 @@ public class GiftPage extends AbstractDesignPage
 		{
 			Donor donor = getModelObject();
 			setResponsePage(new GiftMailSentPage(donor));
+		}
+		
+	}
+	
+	private static class TermsValidator implements IValidator<Boolean> {
+
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public void validate(IValidatable<Boolean> validatable)
+		{
+			if (!validatable.getValue()) {
+				validatable.error(new ValidationError("true required"));
+			}
+			
 		}
 		
 	}
