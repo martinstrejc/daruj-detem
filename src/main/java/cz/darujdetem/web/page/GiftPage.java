@@ -1,5 +1,6 @@
 package cz.darujdetem.web.page;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -17,6 +18,7 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.IValidator;
 import org.apache.wicket.validation.ValidationError;
+import org.springframework.util.StringUtils;
 
 import cz.darujdetem.web.db.entity.Donor;
 import cz.darujdetem.web.db.entity.Gift;
@@ -52,9 +54,13 @@ public class GiftPage extends AbstractDesignPage
 		pers.queue(new Label("name"));
 		pers.queue(new Label("institute.name"));
 		pers.queue(new Label("gift.name"));
+		pers.queue(new Label("gift.note"));
 		pers.queue(new Label("age"));
 		pers.queue(new Label("ageUnit", new CzechYearUnitModel(Model.of(person.getAge()))));
 		
+
+		String relativePath  = "/img/" + (StringUtils.isEmpty(person.getGift().getImg()) ? "" : person.getGift().getImg() );
+		pers.queue(new WebMarkupContainer("img").add(new AttributeModifier("src", getRequest().getContextPath() + relativePath)));
 		
 		Donor donor = new Donor();
 		donor.setPerson(person);

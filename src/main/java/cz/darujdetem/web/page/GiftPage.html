@@ -10,18 +10,32 @@
 
 <wicket:extend>
 
+<wicket:container wicket:id="person">
+
+    <div id="overview" class="container">       
+        <!--SECTIONHEAD START-->
+        <div class="sectionhead">            
+                    <h2><span wicket:id="name">[person name]</span> – <span wicket:id="gift.name">darek</span></h2>
+                    <p wicket:id="institute.name">Nazev instituce</p>
+                    <p wicket:id="gift.note">Popis darku</p>
+                    <p>Věk: <span wicket:id="age">7</span> <span wicket:id="ageUnit">let</span> </p>
+                    <p><a href="#subscribe">Formulář pro zaslání dárku</a> je níže pod obrázkem.</p>
+    	</div><!--SECTIONHEAD END-->
+    	<div>   
+					<img class="" style="width: 50%; height: auto;" src="img/img.png" alt="" wicket:id="img">
+		</div>
+	</div>
 	
     <!-- ===========================
     SUBSCRIBE SECTION
     =========================== -->
-    <div id="subscribe" wicket:id="person">
+    <div id="subscribe">
         <div class="darkoverlay">
             <div class="container text-center">
                 <img class="santaicon wow tada infinite" data-wow-duration="20s" src="img/santa-sm.png" alt="">
-                <div class="sectionhead">            
-                    <h2><span wicket:id="name">[person name]</span> – <span wicket:id="gift.name">darek</span></h2>
-                    <p wicket:id="institute.name">Nazev instituce</p>
-                    <p>Věk: <span wicket:id="age">7</span> <span wicket:id="ageUnit">let</span> </p>
+                
+                <div class="sectionhead">
+                	<p>Prosíme, vyplňte údajé o sobě, na email Vám přijdou další instrukce ohledně darování.</p>            
                 </div><!--SECTIONHEAD END-->            
 
                 <!--MAILCHIMP FORM START-->  
@@ -29,7 +43,6 @@
                     <form wicket:id="donor" class="validate">
                     
                     	<div wicket:id="feedbackPanel"></div>
-
 						<div>E-mail: <input type="email" wicket:id="email" required="required" /> </div>
 						<div>Jméno: <input type="text" wicket:id="name" /> </div>
 						<div>Telefon: <input type="text" wicket:id="phone" /> </div>
@@ -40,6 +53,8 @@
             </div><!--SUBSCRIBE CONTAINER END-->
         </div><!--OVERLAY END-->
     </div><!--SUBSCRIBE SECTION END-->        
+
+</wicket:container>
 
 </wicket:extend>
 
