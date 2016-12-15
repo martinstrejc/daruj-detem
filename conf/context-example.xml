@@ -27,6 +27,8 @@
 	<Environment name="admin.user" type="java.lang.String" value="admin" />
 	<Environment name="admin.password" type="java.lang.String" value="CHANGE_ADMIN_PASSWORD_HERE" />
 
+	<Environment name="wicket.configuration" type="java.lang.String" value="development" />
+	
 <!-- <Environment name="logback.include" type="java.lang.String" value="/etc/tomcat/logback-file.xml" /> -->
               
 </Context>

@@ -1,6 +1,10 @@
 package cz.darujdetem.web;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+
 import org.apache.wicket.Page;
+import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authroles.authentication.pages.SignInPage;
@@ -25,13 +29,23 @@ import cz.darujdetem.web.security.DarujDetemSession;
  */
 public class DarujDetemApplication extends AuthenticatedWebApplication implements ApplicationContextAware
 {
+	
+	@Resource(mappedName = "wicket.configuration")
+	private String wicketConfiguration;
+	
 	private ApplicationContext context;
+	
+	@PostConstruct
+	public void postConstruct() {
+		setConfigurationType("DEVELOPMENT".equalsIgnoreCase(wicketConfiguration) ? RuntimeConfigurationType.DEVELOPMENT : RuntimeConfigurationType.DEPLOYMENT);
+	}
 	
 	@Override
 	protected void init()
 	{
-		super.init();
 		
+		super.init();
+
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this, context));
 		
 		HomePage.mount(this);
