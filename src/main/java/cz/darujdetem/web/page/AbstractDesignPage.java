@@ -1,6 +1,7 @@
 package cz.darujdetem.web.page;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
@@ -39,6 +40,13 @@ public abstract class AbstractDesignPage extends WebPage
 
 	public String getContextPath() {
 		return getRequest().getContextPath();
+	}
+	
+	@Override
+	protected void onInitialize()
+	{
+		super.onInitialize();
+		add(new BookmarkablePageLink<Void>("homePageLink", getApplication().getHomePage()));
 	}
 
 }
