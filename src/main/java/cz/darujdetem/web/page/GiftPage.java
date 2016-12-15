@@ -8,6 +8,7 @@ import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -90,6 +91,9 @@ public class GiftPage extends AbstractDesignPage
 		public DonorForm(String id, Donor donor)
 		{
 			super(id, new CompoundPropertyModel<>(donor));
+			
+			add(new FeedbackPanel("feedbackPanel"));
+			
 			add(new EmailTextField("email").setRequired(true));
 			add(new TextField<String>("name").setRequired(false));
 			add(new TextField<String>("phone").setRequired(false));
@@ -114,7 +118,7 @@ public class GiftPage extends AbstractDesignPage
 		public void validate(IValidatable<Boolean> validatable)
 		{
 			if (!validatable.getValue()) {
-				validatable.error(new ValidationError("true required"));
+				validatable.error(new ValidationError("Souhlas s všeobecnými podmínkami je nutný k pokračování."));
 			}
 			
 		}
