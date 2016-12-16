@@ -44,7 +44,6 @@ public class GlobalServiceImpl implements GlobalService
 		mailService.sendGiftConfirmation(donor, url + donor.getHash());
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public Donor confirmGift(String hash)
 	{

@@ -37,6 +37,10 @@ public class GiftConfirmationPage extends AbstractDesignPage
 		
 		Donor donor = globalService.confirmGift(getDonorHash());
 		
+		if (donor == null) {
+			throw new MissingGiftException("Donor is null for hash " + getDonorHash());
+		}
+		
 		WebMarkupContainer pers = new WebMarkupContainer("person", new CompoundPropertyModel<>(donor.getPerson()));
 		add(pers);
 		

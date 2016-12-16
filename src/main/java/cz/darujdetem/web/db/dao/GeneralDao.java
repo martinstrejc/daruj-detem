@@ -32,7 +32,7 @@ public interface GeneralDao
 	
 	Donor selectDonor(String hash);
 	
-	long updateGiftDonorship(@Param("giftId") long giftId, @Param("donorId") long donorId);
+	Long updateGiftDonorship(@Param("giftId") long giftId, @Param("donorId") long donorId);
 
 		
 	@Select("SELECT count(*) FROM donor")
