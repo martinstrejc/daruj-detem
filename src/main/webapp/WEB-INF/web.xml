@@ -34,16 +34,23 @@
 		</init-param>
 		<init-param>
 			<param-name>configuration</param-name>
-			<param-value>DEVELOPMENT</param-value>
-			<!-- <param-value>DEPLOYMENT</param-value> -->
+<!-- 			<param-value>DEVELOPMENT</param-value> -->
+			<param-value>DEPLOYMENT</param-value>
 		</init-param>
 	</filter>
 
 	<filter-mapping>
 		<filter-name>wicket-filter</filter-name>
 		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+    	<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404</location>
+	</error-page>
+	
 <!--
 	<resource-ref>
 		<res-ref-name>jdbc/kandr</res-ref-name>

@@ -21,6 +21,7 @@ import cz.darujdetem.web.page.GiftPage;
 import cz.darujdetem.web.page.HomePage;
 import cz.darujdetem.web.page.InstitutePage;
 import cz.darujdetem.web.page.admin.AdminPage;
+import cz.darujdetem.web.page.error.NotFoundPage;
 import cz.darujdetem.web.security.DarujDetemSession;
 
 /**
@@ -57,6 +58,9 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 		mountPage("secure/login", SignInPage.class);
 		mountPage("secure/logout", SignOutPage.class);
 		AdminPage.mount(this);
+		
+		NotFoundPage.mount(this);
+		getApplicationSettings().setPageExpiredErrorPage(NotFoundPage.class);
 		
 		DesignPage.mount(this);
 		
