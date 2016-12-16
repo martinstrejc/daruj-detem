@@ -61,6 +61,7 @@ public class DarujDetemApplication extends AuthenticatedWebApplication implement
 		
 		NotFoundPage.mount(this);
 		getApplicationSettings().setPageExpiredErrorPage(NotFoundPage.class);
+		getApplicationSettings().setInternalErrorPage(NotFoundPage.class);
 		
 		DesignPage.mount(this);
 		
